@@ -17,19 +17,24 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     [SerializeField] private Material whiteMaterial;
     [SerializeField] private Material blackMaterial;
     
+    [Header("State")]
     [Tooltip("체스판의 초기 상태를 나타내는 문자열을 입력합니다. 왼쪽 아래부터 오른쪽으로 말이 채워집니다.\n" + 
              "폰은 p, 룩은 r, 나이트는 n, 비숍은 b, 킹은 k, 퀸은 q이며 흰색 기물은 대문자, 검정색 기물은 소문자로 적어주세요.")]
     [SerializeField] private string initializeState;
+
+    [SerializeField] private GameObject targetPiece; // 목표 기물
+    [SerializeField] private Vector2Int initPosition; // 초기 위치
+    [SerializeField] private Vector2Int targetPosition; // 목표 위치
     
-    private GameObject[,] pieces; // 각 체스 칸테 놓여진 기물
-    private Vector2Int selectedBoardPosition; // 선택된 위치
+    private Vector2Int targetCurrentPosition; // 목표 기물의 현재위치
+    private bool[,] canSelected; // 선택 가능 여부
+    private bool isSelected = false; // 목표 기물 선택 여부
     private PlayerController interactingPlayer;
     private BoxCollider boxCollider;
 
     void Start()
     {
-        pieces = new GameObject[8, 8];
-        selectedBoardPosition = new Vector2Int(-1, -1);
+        canSelected = new bool[8, 8];
         boxCollider = GetComponent<BoxCollider>();
         CreatePuzzle();
     }
@@ -55,30 +60,28 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                 Debug.Log(select);
                 if(select.x == -1 && select.y == -1)
                 {
-                    selectedBoardPosition = new Vector2Int(-1, -1);
+                    isSelected = false;
                 }
                 else
                 {
-                    if (selectedBoardPosition.x == -1 && selectedBoardPosition.y == -1)
+                    if (!isSelected)
                     {
-                        if (pieces[select.x, select.y] != null)
+                        if (targetCurrentPosition.x == select.x && targetCurrentPosition.y == select.y)
                         {
-                            selectedBoardPosition = select;
+                            isSelected = true;
                         }
                     }
                     else
                     {
-                        if (pieces[select.x, select.y] == null)
+                        if (canSelected[select.x, select.y])
                         {
-                            GameObject piece = pieces[selectedBoardPosition.x, selectedBoardPosition.y];
-                            piece.transform.position = chessBoard.GetSquareWorldPosition(select.x, select.y);
-                            pieces[select.x, select.y] = piece;
-                            pieces[selectedBoardPosition.x, selectedBoardPosition.y] = null;
-                            selectedBoardPosition = new Vector2Int(-1, -1);
+                            targetPiece.transform.position = chessBoard.GetSquareWorldPosition(select.x, select.y);
+                            targetCurrentPosition = select;
+                            isSelected = false;
                         }
                         else
                         {
-                            selectedBoardPosition = select;
+                            isSelected = false;
                         }
                     }
                 }
@@ -127,6 +130,10 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                 SpawnPiece(initializeState[index], w, h);
             }
         }
+        
+        Vector3 spawnPosition = chessBoard.GetSquareWorldPosition(initPosition.x, initPosition.y);
+        GameObject spawnedPiece = Instantiate(targetPiece, spawnPosition, chessBoard.transform.rotation);
+        spawnedPiece.SetActive(false);
     }
     
     // 기물 스폰
@@ -174,8 +181,8 @@ public class ChessBarrel: MonoBehaviour, IFocusable
             {
                 renderer.material = blackMaterial;
             }
+
+            canSelected[x, y] = false;
         }
-        
-        pieces[x, y] = spawnedPiece;
     }
 }

@@ -2327,7 +2327,10 @@ MonoBehaviour:
   queen: {fileID: 7888852363890180811, guid: 90be5218402b5e74cbd8da218ff8b4d9, type: 3}
   whiteMaterial: {fileID: 2100000, guid: c4309d4054978f93fb08657b9b52c8db, type: 2}
   blackMaterial: {fileID: 2100000, guid: 8f0172e64ad18ad999ad47913faedd7c, type: 2}
-  initializeState: rnbkqbnrppppppppXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPPPPPPPPRNBKQBNR
+  initializeState: RNBQKXXRPXPPXPPPXXbXXNXXXPXXPXXXXpXXpXXXXXXXXnXXpXppXppprnbqkXXr
+  targetPiece: {fileID: 6502235631196388099, guid: 9cec0ecd7afd4304eb4152d39bfc8ad2, type: 3}
+  initPosition: {x: 3, y: 4}
+  targetPosition: {x: 2, y: 5}
 --- !u!65 &6944107929694328963
 BoxCollider:
   m_ObjectHideFlags: 0
