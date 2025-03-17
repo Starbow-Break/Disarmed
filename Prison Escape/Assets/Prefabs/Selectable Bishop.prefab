@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 3039255809941886554}
   - component: {fileID: 5405461297716245801}
   - component: {fileID: 8596436981438555990}
-  - component: {fileID: 6018599211950168826}
   - component: {fileID: 2208996600242340466}
-  - component: {fileID: 6815018374849001717}
+  - component: {fileID: 2788125002043932314}
   m_Layer: 6
-  m_Name: Bishop Item
+  m_Name: Selectable Bishop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +88,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6018599211950168826
+--- !u!114 &2208996600242340466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502235631196388099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6029e834703a79946bd68bd685ab36f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 8596436981438555990}
+  highlightColor: {r: 0.5882353, g: 0, b: 0.5882353, a: 1}
+--- !u!136 &2788125002043932314
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,31 +125,4 @@ CapsuleCollider:
   m_Radius: 0.017440017
   m_Height: 0.070570454
   m_Direction: 1
-  m_Center: {x: 9.313226e-10, y: 0.03531591, z: -4.7019774e-38}
---- !u!114 &2208996600242340466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6502235631196388099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6029e834703a79946bd68bd685ab36f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 8596436981438555990}
-  highlightColor: {r: 0.5882353, g: 0, b: 0.5882353, a: 1}
---- !u!114 &6815018374849001717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6502235631196388099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa04e158c71e3743951c770b3a8b8f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Center: {x: 9.313226e-10, y: 0.03531591, z: 0}
