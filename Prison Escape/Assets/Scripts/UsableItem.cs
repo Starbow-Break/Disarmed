@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public class UsableItem : Item, IUsable
+public class UsableItem : PickableItem, IUsable
 {
     [field: SerializeField]
     public UnityEvent OnUse { get; private set; }

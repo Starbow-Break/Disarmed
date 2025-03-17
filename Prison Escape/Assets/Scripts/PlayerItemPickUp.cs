@@ -75,23 +75,16 @@ public class PlayerItemPickUp : MonoBehaviour
             PickUp();
         }
     }
-
+    
+    // 아이템 집기
     private void PickUp()
     {
         Debug.Log(hit.collider.name);
-        Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
-        if(hit.collider.GetComponent<Item>())
+        IPickable pickable = hit.collider.GetComponent<IPickable>();
+        if(pickable != null)
         {
-            Debug.Log("Pick Up Item!");
-            inHandItem = hit.collider.gameObject;
+            inHandItem = pickable.PickUp();
             inHandItem.transform.SetParent(pickUpParent.transform, false);
-            inHandItem.transform.localPosition = Vector3.zero;
-            inHandItem.transform.localRotation = Quaternion.identity;
-
-            if(rb != null)
-            {
-                rb.isKinematic = true;
-            }
         }
     }
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public interface IInteractable
+public interface IFocusable
 {
-    public void StartInteraction(PlayerController player);
-    public void EndInteraction(PlayerController player);
+    public void Focus(PlayerController player);
+    public void UnFocus(PlayerController player);
 }

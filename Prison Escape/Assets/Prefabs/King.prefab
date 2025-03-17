@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2720027368598463118}
   - component: {fileID: 5290202910563986131}
   - component: {fileID: 7446063441072920521}
-  - component: {fileID: 3551026165310587506}
   m_Layer: 0
   m_Name: King
   m_TagString: Untagged
@@ -87,15 +86,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3551026165310587506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4251924756214195559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00144c16f48aab34680120b3a131682e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

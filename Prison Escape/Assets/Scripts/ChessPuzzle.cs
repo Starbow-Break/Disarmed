@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChessPuzzle : MonoBehaviour, IInteractable
+public class ChessBarrel: MonoBehaviour, IFocusable
 {   
     [Header("Board")]
     [SerializeField] private ChessBoard chessBoard; // 사용하는 체스 보드
@@ -87,12 +87,12 @@ public class ChessPuzzle : MonoBehaviour, IInteractable
         // 우클릭 시 상호작용 해제
         else if (Input.GetMouseButtonDown(1)) 
         {
-            EndInteraction(interactingPlayer);
+            UnFocus(interactingPlayer);
         }
     }
     
     // player랑 상호작용 시작
-    public void StartInteraction(PlayerController player)
+    public void Focus(PlayerController player)
     {
         CameraSwitcher.instance.SwitchCamera("Interaction Camera");
         CursorLocker.instance.UnlockCursor();
@@ -102,7 +102,7 @@ public class ChessPuzzle : MonoBehaviour, IInteractable
     }
     
     // player랑 상호작용 끝
-    public void EndInteraction(PlayerController player)
+    public void UnFocus(PlayerController player)
     {
         CameraSwitcher.instance.SwitchCamera("Player Camera");
         CursorLocker.instance.LockCursor();
