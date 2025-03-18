@@ -16,7 +16,7 @@ public class EventHandler : MonoBehaviour
                 GameObject target = hit.collider.gameObject;
                 // Debug.Log(target.tag);
                 
-                DetermineGameobject.GameObjectType(target);
+                // DetermineGameobject.GameObjectType(target);
 
                 if (target.CompareTag($"Switch"))
                 {

@@ -26,6 +26,30 @@ public class ActiveSwitch : MonoBehaviour
 
     private void SwitchEnter()
     {
-        Debug.Log("Switch entered");
+        if (cauldron == null)
+        {
+            Debug.Log("Cauldron is null");
+            return;
+        }
+        
+        ActiveCauldron cauldronAction = cauldron.GetComponent<ActiveCauldron>();
+        if (cauldronAction != null)
+        {
+            if (!cauldronAction.isSelected)
+            {
+                cauldronAction.ResetCauldron();
+
+                Debug.Log("Not selected");
+            }
+            else if (cauldronAction.CaculateResult())
+            {
+                Debug.Log("Success");
+            }
+            else
+            {
+                cauldronAction.ResetCauldron();
+                Debug.Log("Failed");
+            }
+        }
     }
 }
