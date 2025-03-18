@@ -1,8 +1,10 @@
+using System;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ChessBarrel: MonoBehaviour, IFocusable
-{   
+{
     [Header("Board")]
     [SerializeField] private ChessBoard chessBoard; // 사용하는 체스 보드
 
@@ -26,6 +28,12 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     [Header("Clickable Piece")]
     [SerializeField] private GameObject targetPiece; // 목표 기물
     [SerializeField] private Vector2Int targetPosition; // 목표 위치
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip moveClip;
+    [SerializeField] private AudioClip captureClip;
+    
+    [SerializeField] private UnityEvent OnSuccess;
     
     private Vector2Int targetCurrentPosition; // 목표 기물의 현재위치
     private bool[,] canSelected; // 선택 가능 여부
@@ -35,26 +43,25 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     private BoxCollider boxCollider; // 포커스 용 콜리전
     
     private bool isLock = true; // 잠금 여부
+    private AudioSource audioSource;
 
     void Start()
     {
         canSelected = new bool[8, 8];
         boxCollider = GetComponent<BoxCollider>();
+        audioSource = GetComponent<AudioSource>();
         CreatePuzzle();
     }
     
     void Update()
     {
-        // 상호작용하지 않거나 이미 잠금 해제됐다면 기물의 하이라이트만 꺼주고 종료한다.
-        if (interactingActor == null || !isLock)
+        // 이미 잠금 해제됐다면 기물의 하이라이트만 꺼주고 종료한다.
+        if (!isLock)
         {
             isSelected = false;
             targetPiece.GetComponent<Highlight>()?.SetHighlight(isSelected);
             return;
         }
-        
-        // 하이라이트 설정 변경
-        targetPiece.GetComponent<Highlight>()?.SetHighlight(isSelected);
         
         // 마우스 좌클릭시 커서가 오브젝트를 가리키고 있으면 해당 오브젝트 선택
         if (Input.GetMouseButtonDown(0))
@@ -72,9 +79,8 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                     // 선택한것이 기물이라면 선택 상태로 만든다.
                     if (hit.collider.gameObject == targetPiece)
                     {
-                        isSelected = true;
+                        SelectTargetPiece();
                     }
-
                     return;
                 }
                 
@@ -82,7 +88,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                 // 어떠한 칸도 선택하지 않았다면 선택 상태 해제
                 if(select.x == -1 && select.y == -1)
                 {
-                    isSelected = false;
+                    DeSelectTargetPiece();
                 }
                 else // 칸을 선택했다면
                 {
@@ -91,7 +97,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                     {
                         if (targetCurrentPosition == select)
                         {
-                            isSelected = true;
+                            SelectTargetPiece();
                         }
                     }
                     else
@@ -102,7 +108,9 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                             targetPiece.transform.position = chessBoard.GetSquareWorldPosition(select.x, select.y);
                             targetPiece.transform.rotation = chessBoard.transform.rotation;
                             targetCurrentPosition = select;
+                            targetPiece.GetComponent<Highlight>()?.SetHighlight(false);
                             isSelected = false;
+                            audioSource.PlayOneShot(moveClip);
                             
                             // 기물을 처음 놓았다면 isPut을 true로 바꾸고 기물의 콜리전을 끈다.
                             if (!isPut)
@@ -114,13 +122,14 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                             // 기물이 목표 지점에 놓였다면 잠금 상태 해제
                             if (targetCurrentPosition == targetPosition)
                             {
-                                Unlock();
+                                isLock = false;
+                                OnSuccess?.Invoke();
                                 return;
                             }
                         }
                         else // 기물을 선택한 상태인데 선택 기능한 칸이 아니면 선택 상태 해제
                         {
-                            isSelected = false;
+                            DeSelectTargetPiece();
                         }
                     }
                 }
@@ -129,8 +138,27 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         // 우클릭 시 상호작용 해제
         else if (Input.GetMouseButtonDown(1))
         {
-            isSelected = false;
             UnFocus(interactingActor);
+        }
+    }
+
+    void SelectTargetPiece()
+    {
+        if (!isSelected)
+        {
+            isSelected = true;
+            targetPiece.GetComponent<Highlight>()?.SetHighlight(true);
+            audioSource.PlayOneShot(captureClip);
+        }
+    }
+    
+    void DeSelectTargetPiece()
+    {
+        if (isSelected)
+        {
+            isSelected = false;
+            targetPiece.GetComponent<Highlight>()?.SetHighlight(false);
+            audioSource.PlayOneShot(moveClip);
         }
     }
     
@@ -148,19 +176,13 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     // player랑 상호작용 끝
     public void UnFocus(GameObject actor)
     {
+        isSelected = false;
         CameraSwitcher.instance.SwitchCamera("Player Camera");
         CursorLocker.instance.LockCursor();
         actor.GetComponent<PlayerMovement>().enabled = true;
         actor.GetComponent<PlayerItemPickUp>().enabled = true;
         interactingActor = null;
         boxCollider.enabled = true;
-    }
-    
-    // 잠금 해제
-    private void Unlock()
-    {
-        isLock = false;
-        Debug.Log("Unlock!!!!!!!!");
     }
     
     // initializeState에 맞춰서 기물 배치
