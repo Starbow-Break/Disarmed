@@ -6,7 +6,6 @@ public class PlayerFocus : MonoBehaviour
     [SerializeField] private LayerMask pickableLayerMask;
     [SerializeField] private AimUI aimUI;
     [SerializeField, Min(1)] private float hitRange = 3.0f;
-    [SerializeField] private Transform pickUpParent;
     [SerializeField] private InputActionReference focusInput, unFocusInput;
 
     private RaycastHit hit;
