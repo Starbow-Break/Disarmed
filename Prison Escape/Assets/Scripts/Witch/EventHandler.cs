@@ -4,6 +4,15 @@ using UnityEngine;
 public class EventHandler : MonoBehaviour
 {
     [SerializeField] private GameObject player; //이거는 플레이어 정보를 넘겨줄 필요가 있을 때에 필요해서
+    private PlayerController playerController;
+    private GameObject target;
+    private IFocusable focusable = null;
+
+    private void Start()
+    {
+        playerController = player.gameObject.GetComponent<PlayerController>();
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -13,25 +22,40 @@ public class EventHandler : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                GameObject target = hit.collider.gameObject;
+                target = hit.collider.gameObject;
+                
+                focusable = target.GetComponent<IFocusable>();
+
+                if (focusable != null)
+                {
+                    focusable.Focus(player);
+                }
+                
                 // Debug.Log(target.tag);
                 
                 // DetermineGameobject.GameObjectType(target);
 
                 if (target.CompareTag($"Switch"))
                 {
-                    EnvokeSwitch(target);
+                    InvokeSwitch(target);
                 }
                 else if (target.CompareTag($"Cauldron"))
                 {
-                    EnvokeCauldron(target);
+                    InvokeCauldron(target);
                 }
                 
             }
         }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            if (focusable != null)
+            {
+                focusable.UnFocus(player);
+            }
+        }
     }
 
-    private void EnvokeSwitch(GameObject target)
+    private void InvokeSwitch(GameObject target)
     {
         ActiveSwitch switchComponent = target.GetComponent<ActiveSwitch>();
         if (switchComponent == null)
@@ -43,7 +67,7 @@ public class EventHandler : MonoBehaviour
         switchComponent.TriggeerSwitch();
     }
 
-    private void EnvokeCauldron(GameObject target)
+    private void InvokeCauldron(GameObject target)
     {
         ActiveCauldron cauldronComponent = target.GetComponent<ActiveCauldron>();
         if (cauldronComponent == null)

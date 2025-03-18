@@ -21,8 +21,6 @@ public class ActiveCauldron : MonoBehaviour
         
         root = ingredients[0];
         green = ingredients[1];
-        
-        
     }
 
     private void OnEnable()
