@@ -325,9 +325,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1978202046}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Stop
+      - m_Target: {fileID: 1978202048}
+        m_TargetAssemblyTypeName: Chaser, Assembly-CSharp
+        m_MethodName: StopChase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2025,10 +2025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3371,9 +3371,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1978202046}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Stop
+      - m_Target: {fileID: 1978202048}
+        m_TargetAssemblyTypeName: Chaser, Assembly-CSharp
+        m_MethodName: StopChase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3477,9 +3477,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1978202046}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 1978202048}
+        m_TargetAssemblyTypeName: Chaser, Assembly-CSharp
+        m_MethodName: Chase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4096,7 +4096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d185e50db001bce4fab7e9c89e81b1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timelimit: 10
+  timelimit: 30
   <OnTimeOver>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -4148,9 +4148,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1978202047}
+  - component: {fileID: 1978202048}
   - component: {fileID: 1978202046}
   m_Layer: 0
-  m_Name: Chase Sound
+  m_Name: Chaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4177,10 +4178,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 10
   MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -4188,17 +4189,53 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.2
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -5.0019917
+      outSlope: -5.0019917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.35014954
+      value: 0.5
+      inSlope: -2.5066838
+      outSlope: -2.5066838
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.32281423
+    - serializedVersion: 3
+      time: 0.5008972
+      value: 0.246521
+      inSlope: -1.1572276
+      outSlope: -1.1572276
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.4223126
+    - serializedVersion: 3
+      time: 0.6510315
+      value: 0.12492676
+      inSlope: -0.64971715
+      outSlope: -0.64971715
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.5101252
+    - serializedVersion: 3
+      time: 0.7999854
+      value: 0.06206055
+      inSlope: -0.30309862
+      outSlope: -0.30309862
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.43327627
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 0.02714844
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4268,6 +4305,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1978202048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978202045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c58151a5573e84db8ef130f26cb6e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTransform: {fileID: 2130568502}
+  endTransform: {fileID: 2076298079}
+  chaseTime: 20
 --- !u!4 &1984797171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5367215206829777472, guid: dd7a26e18353799418d77212cc3275fe, type: 3}
@@ -4627,6 +4679,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd7a26e18353799418d77212cc3275fe, type: 3}
+--- !u!1 &2076298078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2076298079}
+  m_Layer: 0
+  m_Name: Chaser End Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2076298079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076298078}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4, y: 4.6, z: 34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2130148902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4689,6 +4772,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8710600888970763131, guid: 97a4b078c0091b947acd8736a2f47884, type: 3}
   m_PrefabInstance: {fileID: 2130148902}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2130568501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130568502}
+  m_Layer: 0
+  m_Name: Chaser Start Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130568502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130568501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4, y: 4.6, z: 72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4708,4 +4822,6 @@ SceneRoots:
   - {fileID: 1553327160}
   - {fileID: 1972474524}
   - {fileID: 1978202047}
+  - {fileID: 2130568502}
+  - {fileID: 2076298079}
   - {fileID: 533282075}
