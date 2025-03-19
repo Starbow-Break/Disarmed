@@ -9,6 +9,7 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
     [SerializeField] private GameObject needItem;
     [SerializeField] private List<GameObject> spawningItem;
     [SerializeField] private FadePanel fadePanel;
+    [SerializeField] private float fadeDuration;
     
     public void InteractUseItem(GameObject actor, GameObject useItem)
     {
@@ -25,7 +26,7 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
         GetComponent<Collider>().enabled = false;
         
         // 페이드 아웃
-        yield return fadePanel.FadeOut(1.0f);
+        yield return fadePanel.FadeIn(fadeDuration);
         
         // 추가 오브젝트 스폰하면서 렌더러 비활성화 및 플레이어가 손에 들고 있는 아이템 사용
         foreach (GameObject item in spawningItem)
@@ -37,7 +38,7 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
         
         // 잠시 대기 후 페이드 인
         yield return new WaitForSeconds(0.5f);
-        yield return fadePanel.FadeIn(1.0f);
+        yield return fadePanel.FadeOut(fadeDuration);
         
         // 해당 오브젝트 파괴
         Destroy(gameObject);

@@ -1,18 +1,19 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class FadePanel : MonoBehaviour
+public class ToBeContinuedText : MonoBehaviour
 {
-    [SerializeField] private Image image;
+    private TextMeshProUGUI textMeshPro;
 
     void Start()
     {
-        image.color = new Color(
-            image.color.r,
-            image.color.g,
-            image.color.b,
-            0f
+        textMeshPro = GetComponent<TextMeshProUGUI>();
+        textMeshPro.color = new Color(
+            textMeshPro.color.r,
+            textMeshPro.color.g,
+            textMeshPro.color.b,
+            0.0f
         );
     }
     
@@ -35,10 +36,10 @@ public class FadePanel : MonoBehaviour
             
             currentTime += Time.deltaTime;
             
-            image.color = new Color(
-                image.color.r,
-                image.color.g,
-                image.color.b,
+            textMeshPro.color = new Color(
+                textMeshPro.color.r,
+                textMeshPro.color.g,
+                textMeshPro.color.b,
                 Mathf.Lerp(1f, 0f, currentTime / duration)
             );
         }
@@ -53,10 +54,10 @@ public class FadePanel : MonoBehaviour
             
             currentTime += Time.deltaTime;
             
-            image.color = new Color(
-                image.color.r,
-                image.color.g,
-                image.color.b,
+            textMeshPro.color = new Color(
+                textMeshPro.color.r,
+                textMeshPro.color.g,
+                textMeshPro.color.b,
                 Mathf.Lerp(0f, 1f, currentTime / duration)
             );
         }
