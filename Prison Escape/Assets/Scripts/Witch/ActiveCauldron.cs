@@ -40,10 +40,10 @@ public class ActiveCauldron : MonoBehaviour
 
     private void CauldronEnter(GameObject player)
     {
-        PlayerItemPickUp playerItemPickUp = player.GetComponent<PlayerItemPickUp>();
-        if (playerItemPickUp != null)
+        PlayerPickup playerPickup = player.GetComponent<PlayerPickup>();
+        if (playerPickup != null)
         {
-            GameObject item = playerItemPickUp.inHandItem;
+            GameObject item = playerPickup.inHandItem;
 
             if (item == null)
             {
