@@ -580,18 +580,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4735221276782636782, guid: 5c58fb2d7ad52444f85fc37bcad1f0a5, type: 3}
   m_PrefabInstance: {fileID: 2129349943}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &320347267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320347262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa04e158c71e3743951c770b3a8b8f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &320347268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,6 +595,18 @@ MonoBehaviour:
   renderers:
   - {fileID: 320347264}
   highlightColor: {r: 0.627451, g: 0, b: 0.627451, a: 1}
+--- !u!114 &320347269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320347262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718a70dfe5b7c0343a76d17f8f3d37b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &366866810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1879,7 +1879,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 322969909244090201, guid: 1a4ce7ed7389af14cbc47a4b3ba8a164, type: 3}
       propertyPath: m_Name
-      value: Open Key
+      value: Usable Key
       objectReference: {fileID: 0}
     - target: {fileID: 322969909244090201, guid: 1a4ce7ed7389af14cbc47a4b3ba8a164, type: 3}
       propertyPath: m_Layer
@@ -1946,7 +1946,7 @@ PrefabInstance:
       addedObject: {fileID: 1213626244}
     - targetCorrespondingSourceObject: {fileID: 322969909244090201, guid: 1a4ce7ed7389af14cbc47a4b3ba8a164, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1213626243}
+      addedObject: {fileID: 1213626245}
   m_SourcePrefab: {fileID: 100100000, guid: 1a4ce7ed7389af14cbc47a4b3ba8a164, type: 3}
 --- !u!1 &1213626240 stripped
 GameObject:
@@ -1979,18 +1979,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 322969909241891225, guid: 1a4ce7ed7389af14cbc47a4b3ba8a164, type: 3}
   m_PrefabInstance: {fileID: 1213626239}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1213626243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213626240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa04e158c71e3743951c770b3a8b8f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1213626244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,6 +1994,18 @@ MonoBehaviour:
   renderers:
   - {fileID: 1213626242}
   highlightColor: {r: 0.627451, g: 0, b: 0.627451, a: 1}
+--- !u!114 &1213626245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213626240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775e06a7502be6345ab9b670c4e42f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1227662675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3704,7 +3704,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4735221276784898094, guid: 5c58fb2d7ad52444f85fc37bcad1f0a5, type: 3}
       propertyPath: m_Name
-      value: Pickable Bone
+      value: Usable Bone
       objectReference: {fileID: 0}
     - target: {fileID: 4735221276784898094, guid: 5c58fb2d7ad52444f85fc37bcad1f0a5, type: 3}
       propertyPath: m_Layer
@@ -3764,10 +3764,10 @@ PrefabInstance:
       addedObject: {fileID: 320347263}
     - targetCorrespondingSourceObject: {fileID: 4735221276784898094, guid: 5c58fb2d7ad52444f85fc37bcad1f0a5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 320347267}
+      addedObject: {fileID: 320347268}
     - targetCorrespondingSourceObject: {fileID: 4735221276784898094, guid: 5c58fb2d7ad52444f85fc37bcad1f0a5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 320347268}
+      addedObject: {fileID: 320347269}
   m_SourcePrefab: {fileID: 100100000, guid: 5c58fb2d7ad52444f85fc37bcad1f0a5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

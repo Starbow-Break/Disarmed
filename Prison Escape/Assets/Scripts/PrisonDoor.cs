@@ -16,8 +16,8 @@ public class PrisonDoor : MonoBehaviour, IItemInteractable
         // 사용한 아이템과 필요한 아이템이 일치하면
         if (useItem == needItem)
         {
+            useItem.GetComponent<IUsable>()?.Use(actor);
             animator.SetTrigger("Open");
-            Destroy(useItem);
         }
     }
 }

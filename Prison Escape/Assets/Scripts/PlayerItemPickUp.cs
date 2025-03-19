@@ -16,7 +16,7 @@ public class PlayerItemPickUp : MonoBehaviour
 
     private void Start()
     {
-        interactionInput.action.performed += Interact;
+        interactionInput.action.performed += PickUp;
         dropInput.action.performed += Drop;
     }
 
@@ -62,39 +62,18 @@ public class PlayerItemPickUp : MonoBehaviour
             aimUI.SetBigger(true);
         }
     }
-
-    private void Interact(InputAction.CallbackContext context) {
-        
-        if (inHandItem)
-        {
-            Use();
-        }
-        else if(hit.collider != null)
-        {
-            PickUp();
-        }
-    }
     
     // 아이템 집기
-    private void PickUp()
+    private void PickUp(InputAction.CallbackContext context)
     {
-        Debug.Log(hit.collider.name);
-        IPickable pickable = hit.collider.GetComponent<IPickable>();
-        if(pickable != null)
+        if (hit.collider != null)
         {
-            inHandItem = pickable.PickUp();
-            inHandItem.transform.SetParent(pickUpParent.transform, false);
-        }
-    }
-
-    private void Use()
-    {
-        if(inHandItem != null)
-        {
-            IUsable usable = inHandItem.GetComponent<IUsable>();
-            if (usable != null)
+            Debug.Log(hit.collider.name);
+            IPickable pickable = hit.collider.GetComponent<IPickable>();
+            if(pickable != null)
             {
-                usable.Use(gameObject);
+                inHandItem = pickable.PickUp();
+                inHandItem.transform.SetParent(pickUpParent.transform, false);
             }
         }
     }

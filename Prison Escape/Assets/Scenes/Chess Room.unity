@@ -1604,6 +1604,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7371784024314320943, guid: 28164af870ceaca4292540d850e7e49c, type: 3}
+      propertyPath: aimUI
+      value: 
+      objectReference: {fileID: 1834251272}
+    - target: {fileID: 7371784024314320943, guid: 28164af870ceaca4292540d850e7e49c, type: 3}
+      propertyPath: pickableLayerMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 8186652722862627565, guid: 28164af870ceaca4292540d850e7e49c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
