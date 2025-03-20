@@ -10,6 +10,7 @@ public class EventHandler : MonoBehaviour
     [SerializeField] private GameObject player; //이거는 플레이어 정보를 넘겨줄 필요가 있을 때에 필요해서
     [SerializeField] private PlayerController_TMP playerController;
     [SerializeField] private PlayerPickup playerPickup;
+    [SerializeField] private GameObject playerUI;
     [SerializeField, Min(1)] private float hitRange = 3.0f;
     private GameObject target;
     private UsableIngredients ingredients = null;
@@ -77,6 +78,7 @@ public class EventHandler : MonoBehaviour
 
             if (focusable != null)
             {
+                playerUI.SetActive(false);
                 focusable.Focus(player);
             }
             
@@ -130,6 +132,7 @@ public class EventHandler : MonoBehaviour
     {
         if (focusable != null)
         {
+            playerUI.SetActive(true);
             focusable.UnFocus(player);
         }
         
