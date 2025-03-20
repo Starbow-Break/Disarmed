@@ -41,13 +41,8 @@ public class PlayerMove : MonoBehaviour
         UpdateMoveDirection();
         RotateCamera();
         ApplyGravity();
-    }
-
-    private void FixedUpdate()
-    {
         MovePlayer();
     }
-
     private void MoveDir(Vector2 direction)
     {
         inputDirection = direction;

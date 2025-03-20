@@ -10,7 +10,9 @@ public class EventHandler : MonoBehaviour
     [SerializeField] private GameObject player; //이거는 플레이어 정보를 넘겨줄 필요가 있을 때에 필요해서
     [SerializeField] private PlayerController_TMP playerController;
     [SerializeField] private PlayerPickup playerPickup;
+    [SerializeField, Min(1)] private float hitRange = 3.0f;
     private GameObject target;
+    private UsableIngredients ingredients = null;
     private IFocusable focusable = null;
     private IPickable pickable = null;
     private IUsable usable = null;
@@ -18,11 +20,6 @@ public class EventHandler : MonoBehaviour
     private void Start()
     {
         CheckPlayer();
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -70,10 +67,11 @@ public class EventHandler : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, hitRange))
         {
             target = hit.collider.gameObject;
             
+            ingredients = target.GetComponent<UsableIngredients>();
             focusable = target.GetComponent<IFocusable>();
             pickable = target.GetComponent<IPickable>();
 
@@ -89,13 +87,31 @@ public class EventHandler : MonoBehaviour
             
             if (pickable != null)
             {
-                if (playerPickup.inHandItem != null)
+                // 기존 pickable, usable인 오브젝트에 반응할 것
+                if (ingredients == null)
                 {
-                    playerPickup.ChangeItem(target);
+                    // 스크롤 끼리 교환을 구현하고 싶어서 냅둔 것 지울 수도 있음
+                    if (playerPickup.inHandItem != null)
+                    {
+                        playerPickup.ChangeItem(target);
+                    }
+
+                    playerPickup.PickUp(pickable);
+                    usable = playerPickup.inHandItem.GetComponent<IUsable>();
+                    Debug.Log(usable);
                 }
-                playerPickup.PickUp(pickable);
-                usable = playerPickup.inHandItem.GetComponent<IUsable>();
-                Debug.Log(usable);
+                
+                // 재료의 경우 복사해서 가져오고 싶어서 따로 뺌
+                else
+                {
+                    if (playerPickup.inHandItem != null)
+                    {
+                        playerPickup.DestroyinHandItem();
+                    }
+                    playerPickup.CopyItem(target);
+                    usable = playerPickup.inHandItem.GetComponent<IUsable>();
+                    Debug.Log(usable);
+                }
             }
             
             if (target.CompareTag($"Switch"))
