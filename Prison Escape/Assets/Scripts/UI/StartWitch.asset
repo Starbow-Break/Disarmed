@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b6d45d3b866774995855f61092b3b7, type: 3}
+  m_Name: StartWitch
+  m_EditorClassIdentifier: 
+  dialogues:
+  - "\uB9C8\uB140 : \uB10C \uB204\uAD6C\uB0D0?"
+  - "\uC5B4\uB514\uC11C \uB098\uB294 \uBAA9\uC18C\uB9AC\uC9C0?"
+  - "\uB9C8\uB140 : \uB514\uB514\uC988\uCFE8\uB77C\uC0AC\uB97C \uB9CC\uB4E4\uC5B4\uC57C
+    \uD558\uB2C8 \uB3C4\uC640\uC8FC\uC9C0 \uC54A\uACA0\uB2E4\uBA74 \uC0AC\uB77C\uC838\uB77C."
+  - "\uC5EC\uAE30\uC11C \uB098\uAC00\uB824\uBA74 \uC5B4\uB5BB\uAC8C \uD574\uC57C
+    \uD558\uC9C0?"
+  - "\uB9C8\uB140 : <size=40><b>\uB514\uB514\uC988\uCFE8\uB77C\uC0AC(jidhitkhulasa)</b></size>\uB97C
+    \uB9CC\uB4E4\uBA74 \uBE44\uBC00\uD1B5\uB85C\uB97C \uC54C\uB824\uC8FC\uB9C8."
+  - "\uB514\uB514\uC988\uCFE8\uB77C\uC0AC? \uB514\uB514\uC988\uCFE8\uB77C\uC0AC\uAC00
+    \uBB50\uC9C0?"
+  - "\uB9C8\uB140 : \uC8FC\uBCC0\uC744 \uC0B4\uD3B4\uBCF4\uACE0 \uC54C\uC544\uC11C
+    \uCC3E\uC544\uB77C. "
+  - "\uB9C8\uB140 : \uC7AC\uB8CC\uB97C \uC1A5\uC5D0 \uB123\uC5B4 \uC644\uC131\uD558\uBA74,\_
+    \uB808\uBC84\uB97C \uB2F9\uACA8 \uB098\uB97C \uBD88\uB7EC\uB77C."

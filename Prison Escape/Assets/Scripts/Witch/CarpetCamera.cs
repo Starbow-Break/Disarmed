@@ -1,10 +1,13 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CarpetCamera : MonoBehaviour, IFocusable
 {
+    [SerializeField] private GameObject targetcamera;
+    
     public void Focus(GameObject actor)
     {
-        CameraSwitcher.instance.SwitchCamera("Camera_RedCarpet");
+        CameraSwitcher.instance.SwitchCamera(targetcamera.name);
         CursorLocker.instance.UnlockCursor();
         actor.GetComponent<PlayerMove>().enabled = false;
     }
