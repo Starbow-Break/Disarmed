@@ -138,7 +138,10 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         // 우클릭 시 상호작용 해제
         else if (Input.GetMouseButtonDown(1))
         {
-            UnFocus(interactingActor);
+            if (interactingActor != null)
+            {
+                UnFocus(interactingActor);   
+            }
         }
     }
 
@@ -167,8 +170,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     {
         CameraSwitcher.instance.SwitchCamera("Interaction Camera");
         CursorLocker.instance.UnlockCursor();
-        // actor.GetComponent<PlayerMovement>().enabled = false;
-        // actor.GetComponent<PlayerItemPickUp>().enabled = false;
+        actor.GetComponent<PlayerMove>().enabled = false;
         interactingActor = actor;
         boxCollider.enabled = false;
     }
@@ -179,8 +181,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         isSelected = false;
         CameraSwitcher.instance.SwitchCamera("Player Camera");
         CursorLocker.instance.LockCursor();
-        // actor.GetComponent<PlayerMovement>().enabled = true;
-        // actor.GetComponent<PlayerItemPickUp>().enabled = true;
+        actor.GetComponent<PlayerMove>().enabled = true;
         interactingActor = null;
         boxCollider.enabled = true;
     }

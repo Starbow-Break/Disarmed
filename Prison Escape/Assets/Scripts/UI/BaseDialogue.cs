@@ -47,6 +47,7 @@ public abstract class BaseDialogue : MonoBehaviour
         }
         
         uiHandler.ChangeDialogue("");
+        
         gameObject.SetActive(false);
     } 
 }

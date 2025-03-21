@@ -5,6 +5,7 @@ public class ActiveSwitch : MonoBehaviour
 {
     [SerializeField] private GameObject cauldron;
     [SerializeField] private StartSwitchOn ToDialogue;
+    [SerializeField] private Door door;
     public static event Action OnSwitch;
 
     private enum SwitchState
@@ -52,6 +53,7 @@ public class ActiveSwitch : MonoBehaviour
             else if (cauldronAction.CaculateResult())
             {
                 ToDialogue.StartDialogue((int)SwitchState.Success);
+                door.Open();
                 Debug.Log("Success");
             }
             else
