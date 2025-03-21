@@ -13,7 +13,7 @@ public class PlayerItemPickUp : MonoBehaviour
     [SerializeField] private InputActionReference interactionInput, dropInput;
 
     private RaycastHit hit;
-    private GameObject inHandItem;
+    public GameObject inHandItem { get; private set; }
 
     private void Start()
     {
