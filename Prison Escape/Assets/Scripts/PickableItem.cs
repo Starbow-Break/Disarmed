@@ -17,3 +17,5 @@ public class PickableItem : MonoBehaviour, IPickable
         return gameObject;
     }
 }
+
+
