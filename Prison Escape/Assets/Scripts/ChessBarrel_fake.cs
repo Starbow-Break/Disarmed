@@ -167,8 +167,8 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     {
         CameraSwitcher.instance.SwitchCamera("Interaction Camera");
         CursorLocker.instance.UnlockCursor();
-        actor.GetComponent<PlayerMovement>().enabled = false;
-        actor.GetComponent<PlayerItemPickUp>().enabled = false;
+        // actor.GetComponent<PlayerMovement>().enabled = false;
+        // actor.GetComponent<PlayerItemPickUp>().enabled = false;
         interactingActor = actor;
         boxCollider.enabled = false;
     }
@@ -179,8 +179,8 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         isSelected = false;
         CameraSwitcher.instance.SwitchCamera("Player Camera");
         CursorLocker.instance.LockCursor();
-        actor.GetComponent<PlayerMovement>().enabled = true;
-        actor.GetComponent<PlayerItemPickUp>().enabled = true;
+        // actor.GetComponent<PlayerMovement>().enabled = true;
+        // actor.GetComponent<PlayerItemPickUp>().enabled = true;
         interactingActor = null;
         boxCollider.enabled = true;
     }

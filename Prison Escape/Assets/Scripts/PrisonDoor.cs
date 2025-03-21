@@ -4,11 +4,10 @@ public class PrisonDoor : MonoBehaviour, IItemInteractable
 {
     // 상호작용을 위해 필요한 아이템
     [SerializeField] private GameObject needItem;
-
     private Animator animator;
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
     }
     
     public void InteractUseItem(GameObject actor, GameObject useItem)
@@ -16,7 +15,6 @@ public class PrisonDoor : MonoBehaviour, IItemInteractable
         // 사용한 아이템과 필요한 아이템이 일치하면
         if (useItem == needItem)
         {
-            useItem.GetComponent<IUsable>()?.Use(actor);
             animator.SetTrigger("Open");
         }
     }

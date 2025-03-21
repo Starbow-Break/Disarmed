@@ -34,7 +34,6 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
             item.SetActive(true);
         }
         GetComponent<Renderer>().enabled = false;
-        useItem.GetComponent<IUsable>()?.Use(actor);
         
         // 잠시 대기 후 페이드 인
         yield return new WaitForSeconds(0.5f);

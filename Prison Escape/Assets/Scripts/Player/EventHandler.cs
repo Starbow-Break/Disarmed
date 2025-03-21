@@ -12,6 +12,7 @@ public class EventHandler : MonoBehaviour
     [SerializeField] private PlayerPickup playerPickup;
     [SerializeField] private GameObject playerUI;
     [SerializeField, Min(1)] private float hitRange = 3.0f;
+    [SerializeField] private LayerMask layerMask;
     private GameObject target;
     private UsableIngredients ingredients = null;
     private IFocusable focusable = null;
@@ -68,12 +69,17 @@ public class EventHandler : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         
-        if (Physics.Raycast(ray, out RaycastHit hit, hitRange))
+        if (Physics.Raycast(ray, out RaycastHit hit, hitRange, layerMask))
         {
             target = hit.collider.gameObject;
+            Debug.Log(target.name);
             
             ingredients = target.GetComponent<UsableIngredients>();
-            focusable = target.GetComponent<IFocusable>();
+            IFocusable focusableTemp = target.GetComponent<IFocusable>();
+            if(focusableTemp != null)
+            {
+                focusable = focusableTemp;
+            }
             pickable = target.GetComponent<IPickable>();
 
             if (focusable != null)
@@ -95,7 +101,7 @@ public class EventHandler : MonoBehaviour
                     // 스크롤 끼리 교환을 구현하고 싶어서 냅둔 것 지울 수도 있음
                     if (playerPickup.inHandItem != null)
                     {
-                        playerPickup.ChangeItem(target);
+                        // playerPickup.ChangeItem(target);
                     }
 
                     playerPickup.PickUp(pickable);
@@ -134,8 +140,8 @@ public class EventHandler : MonoBehaviour
         {
             playerUI.SetActive(true);
             focusable.UnFocus(player);
+            focusable = null;
         }
-        
     }
 
     private void CheckPlayer()
