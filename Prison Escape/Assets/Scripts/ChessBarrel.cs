@@ -55,6 +55,12 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     
     void Update()
     {
+        // 게임이 일시정지된 상태면 어떠한 작업도 하지 않는다.
+        if (GamePause.isPaused)
+        {
+            return;
+        }
+        
         // 이미 잠금 해제됐다면 기물의 하이라이트만 꺼주고 종료한다.
         if (!isLock)
         {
