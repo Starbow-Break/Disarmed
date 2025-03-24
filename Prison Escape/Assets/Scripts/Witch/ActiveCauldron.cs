@@ -1,15 +1,20 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ActiveCauldron : MonoBehaviour
 {
     public static event Action<GameObject> OnCauldron;
     
     [SerializeField] private String[] ingredients;
+    [SerializeField] private AudioSource audioSource;
+    
     private static string root = "";
     private static string green = "";
     public bool isSelected { get; private set; }
+    private int yesitem = 0;
+    private int noitem = 1;
     private int rootCount;
     private int greenCount;
 
@@ -51,6 +56,7 @@ public class ActiveCauldron : MonoBehaviour
             }
             else
             {
+                audioSource.Play();
                 if(!isSelected) isSelected = true;
                 Debug.Log("Item is " + item.name);
                 if (item.name == root)
