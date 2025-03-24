@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public interface IUsable {
-    void Use(GameObject actor);
+public interface IUsable
+{
+    public void Use(GameObject actor, GameObject target);
     UnityEvent OnUse { get; }
 }
 

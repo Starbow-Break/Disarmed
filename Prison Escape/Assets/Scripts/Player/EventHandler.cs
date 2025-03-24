@@ -71,7 +71,6 @@ public class EventHandler : MonoBehaviour
         
         if (focusable == null && Physics.Raycast(ray, out RaycastHit hit, hitRange, layerMask))
         {
-            Debug.Log("wow");
             target = hit.collider.gameObject;
             Debug.Log(target.name);
             
@@ -91,7 +90,7 @@ public class EventHandler : MonoBehaviour
             
             if (usable != null)
             {
-                usable.Use(target);
+                usable.Use(gameObject, target);
             }
             else
             {
@@ -171,5 +170,10 @@ public class EventHandler : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void SetNullUsable()
+    {
+        usable = null;
     }
 }

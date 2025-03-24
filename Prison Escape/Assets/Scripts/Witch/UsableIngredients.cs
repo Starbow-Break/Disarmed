@@ -14,11 +14,12 @@ public class UsableIngredients : PickableItem, IUsable
         }
     }
     
-    public void Use(GameObject target)
+    public void Use(GameObject actor, GameObject target)
     {
         if (Distroyer == target)
         {
             Destroy(gameObject);
+            actor.GetComponent<EventHandler>()?.SetNullUsable();
         }
     }
 }
