@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ActiveSwitch : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject cauldron;
     [SerializeField] private StartSwitchOn ToDialogue;
     [SerializeField] private Door door;
@@ -12,7 +13,8 @@ public class ActiveSwitch : MonoBehaviour
     {
         Nodata,     // 솥에 데이터가 들어오지 않았을 경우
         Success,    // 솥에서 제약에 성공했을 경우
-        Failed      // 솥에서 제약에 실패했을 경우
+        Failed,
+        Again// 솥에서 제약에 실패했을 경우
     }
     
     // 여기에서는 이제 cauldron에 들어 있는 값을 가지고 뭔갈 할 예정.
@@ -38,6 +40,15 @@ public class ActiveSwitch : MonoBehaviour
         if (cauldron == null)
         {
             Debug.Log("Cauldron is null");
+            return;
+        }
+
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            StopAllCoroutines();
+            ToDialogue.StartDialogue((int)SwitchState.Again);
+            Debug.Log("Clicked again");
             return;
         }
         

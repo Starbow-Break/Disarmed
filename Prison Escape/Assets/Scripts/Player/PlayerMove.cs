@@ -82,5 +82,11 @@ public class PlayerMove : MonoBehaviour
         
         mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
+
+    public void SetDirectionZero()
+    {
+        moveDirection = Vector3.zero;
+        inputDirection = Vector2.zero;
+    }
 }
 
