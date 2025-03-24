@@ -17003,6 +17003,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4347471386345259174, guid: 1389cf300493dd640be1eac47d23f89a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4987397706470186017, guid: 1389cf300493dd640be1eac47d23f89a, type: 3}
       propertyPath: m_Name
       value: Savepoint
