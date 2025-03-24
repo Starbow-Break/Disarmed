@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ScatteredKey : MonoBehaviour, IItemInteractable
 {
@@ -10,6 +11,14 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
     [SerializeField] private List<GameObject> spawningItem;
     [SerializeField] private FadePanel fadePanel;
     [SerializeField] private float fadeDuration;
+    [SerializeField] private PlayerInput playerInput;
+    
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     
     public void InteractUseItem(GameObject actor, GameObject useItem)
     {
@@ -22,8 +31,8 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
 
     private IEnumerator InteractSequence(GameObject actor, GameObject useItem)
     {
-        // 상호작용하지 옷하게 몰리전만 비활성화
-        GetComponent<Collider>().enabled = false;
+        // 상호작용하지 옷하게 PlayerInput 비활성화
+        playerInput.enabled = false;
         
         // 페이드 아웃
         yield return fadePanel.FadeIn(fadeDuration);
@@ -32,13 +41,19 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
         foreach (GameObject item in spawningItem)
         {
             item.SetActive(true);
+            item.transform.position = actor.transform.position;
         }
         GetComponent<Renderer>().enabled = false;
         
-        // 잠시 대기 후 페이드 인
-        yield return new WaitForSeconds(0.5f);
+        // 효과음 재생
+        audioSource.Play();
+        yield return new WaitWhile(() => audioSource.isPlaying);
+        
+        // 페이드 인
         yield return fadePanel.FadeOut(fadeDuration);
         
+        // PlayerInput 활성화
+        playerInput.enabled = true;
         // 해당 오브젝트 파괴
         Destroy(gameObject);
     }

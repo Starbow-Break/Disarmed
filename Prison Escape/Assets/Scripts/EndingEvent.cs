@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
@@ -14,6 +15,9 @@ public class EndingEvent : MonoBehaviour
     
     [SerializeField] private GameObject player;
     [SerializeField] private Transform badEndingSpawnPoint;
+
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] SceneLoader sceneLoader;
     
     public void BadEnding()
     {
@@ -27,6 +31,8 @@ public class EndingEvent : MonoBehaviour
 
     private IEnumerator BadEndingSequence()
     {
+        playerInput.enabled = false;
+        
         yield return fadePanel.FadeIn(panelFadeDuration);
         yield return new WaitForSeconds(0.25f);
         
@@ -38,18 +44,24 @@ public class EndingEvent : MonoBehaviour
         
         yield return new WaitForSeconds(0.25f);
         yield return fadePanel.FadeOut(panelFadeDuration);
+        
+        playerInput.enabled = true;
     }
 
     private IEnumerator HappyEndingSequence()
     {
+        playerInput.enabled = false;
+        
         yield return fadePanel.FadeIn(panelFadeDuration);
         yield return new WaitForSeconds(1.0f);
         
         yield return toBeContinuedText.FadeIn(textFadeDuration);
         yield return new WaitForSeconds(1.0f);
         yield return toBeContinuedText.FadeOut(textFadeDuration);
+        yield return new WaitForSeconds(1.0f);
         
-        // TODO : 메인 씬으로 이동
-        //SceneManager.LoadScene();
+        playerInput.enabled = true;
+        CursorLocker.instance.UnlockCursor();
+        sceneLoader.LoadScene("Main");
     }
 }
