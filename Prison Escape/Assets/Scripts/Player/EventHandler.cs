@@ -69,7 +69,7 @@ public class EventHandler : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         
-        if (Physics.Raycast(ray, out RaycastHit hit, hitRange, layerMask))
+        if (focusable == null && Physics.Raycast(ray, out RaycastHit hit, hitRange, layerMask))
         {
             target = hit.collider.gameObject;
             Debug.Log(target.name);
@@ -91,6 +91,14 @@ public class EventHandler : MonoBehaviour
             if (usable != null)
             {
                 usable.Use(target);
+            }
+            else
+            {
+                IItemInteractable itemInteractable = target.GetComponent<IItemInteractable>();
+                if (itemInteractable != null)
+                {
+                    itemInteractable.InteractUseItem(gameObject, null);
+                }
             }
             
             if (pickable != null)
