@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class StartSwitchOn : BaseDialogue
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private PlayWitchAudio WitchAudioClips;
+
+    private int clicked_again = 3;
     public void StartDialogue(int number)
     {
         if (dialogue == null || uiHandler == null)
@@ -12,13 +16,21 @@ public class StartSwitchOn : BaseDialogue
             return;
         }
         
+        audioSource.resource = WitchAudioClips.WitchSwitch[number];
+        Debug.Log(audioSource.resource);
+        audioSource.Play();
         uiHandler.ChangeDialogue(dialogue.dialogues[number]);
+        
         StartCoroutine(SetDialogueNULL());
     }
 
     private IEnumerator SetDialogueNULL()
     {
-        yield return new WaitForSeconds(waitTime);
+        while (audioSource.isPlaying)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        
         uiHandler.ChangeDialogue("");
     }
     

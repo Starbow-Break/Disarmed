@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2925577525895015286}
   - component: {fileID: 7362263515396214696}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera_Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1811898927023304727}
   - component: {fileID: 4717425462395426446}
   - component: {fileID: 8980399316002499602}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: CandleLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 7516316566871193484}
   - component: {fileID: 448577144831972617}
   - component: {fileID: 5646620034208570513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Book_Open (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8609709195806063703}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458829667876020475}
   - component: {fileID: 6479043583275659652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flame (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 4303457634244566936}
   - component: {fileID: 4941137950671925823}
   - component: {fileID: 926607337792462250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: book_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 6261985329291916201}
   - component: {fileID: 3511515520321287007}
   - component: {fileID: 2476703267075522598}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: CandleLight (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 1681510551874103230}
   - component: {fileID: 7586961773332688400}
   - component: {fileID: 4034153732356348708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8905674702159262057}
   - component: {fileID: 469113020637632137}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
