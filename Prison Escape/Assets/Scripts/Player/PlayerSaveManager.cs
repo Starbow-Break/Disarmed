@@ -54,7 +54,7 @@ public class PlayerSaveManager : MonoBehaviour
         }
         Debug.Log($"{player.name} respawn at {savepointNow.name}");
         
-        Vector3 respawnPosition = new Vector3(savepointNow.transform.position.x, 0.2f, savepointNow.transform.position.z);
+        Vector3 respawnPosition = new Vector3(savepointNow.transform.position.x, savepointNow.transform.position.y, savepointNow.transform.position.z);
         Debug.Log($"{respawnPosition}");
         
         CharacterController controller = player.GetComponent<CharacterController>();
