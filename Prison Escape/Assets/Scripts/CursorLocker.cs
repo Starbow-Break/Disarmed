@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,12 +6,14 @@ using UnityEngine.InputSystem;
 public class CursorLocker : MonoBehaviour
 {
     public static CursorLocker instance;
-    
+    public bool isCursorlocked { get; private set; }
+
     void OnEnable()
     {
         if (instance == null)
         {
             instance = this;
+            LockCursor();
         }
         else
         {
@@ -29,13 +32,9 @@ public class CursorLocker : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        LockCursor();
-    }
-
     public void LockCursor()
     {
+        isCursorlocked = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         
@@ -54,6 +53,7 @@ public class CursorLocker : MonoBehaviour
 
     public void UnlockCursor()
     {
+        isCursorlocked = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

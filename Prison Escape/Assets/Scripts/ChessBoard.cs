@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
@@ -17,10 +18,13 @@ public class ChessBoard : MonoBehaviour
     
     private BoxCollider[,] squareColliders;
     
-    private void Start()
+    private void Awake()
     {
         squareColliders = new BoxCollider[widthCount, heightCount];
-        
+    }
+
+    private void OnEnable()
+    {
         for (int x = 0; x < widthCount; x++)
         {
             for (int z = 0; z < heightCount; z++)
@@ -37,6 +41,17 @@ public class ChessBoard : MonoBehaviour
                 BoxCollider collider = spawnedSquareTrigger.GetComponent<BoxCollider>();
                 collider.size = new Vector3(squareWidth, boardHeight, squareHeight);
                 squareColliders[x, z] = collider;
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int x = 0; x < widthCount; x++)
+        {
+            for (int z = 0; z < heightCount; z++)
+            {
+                squareColliders[x, z].gameObject.SetActive(false);
             }
         }
     }

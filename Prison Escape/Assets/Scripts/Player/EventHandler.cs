@@ -71,6 +71,7 @@ public class EventHandler : MonoBehaviour
         
         if (focusable == null && Physics.Raycast(ray, out RaycastHit hit, hitRange, layerMask))
         {
+            Debug.Log("wow");
             target = hit.collider.gameObject;
             Debug.Log(target.name);
             
