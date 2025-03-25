@@ -69,7 +69,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
             return;
         }
         
-        // 마우스 좌클릭시 커서가 오브젝트를 가리키고 있으면 해당 오브젝트 선택
+        // TODO : 마우스 좌클릭시 커서가 오브젝트를 가리키고 있으면 해당 오브젝트 선택 (수정 예정)
         if (Input.GetMouseButtonDown(0))
         {   
             // 스크린에서 마우스 클릭 위치를 통과하는 광선 생성
@@ -141,7 +141,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                 }
             }
         }
-        // 우클릭 시 상호작용 해제
+        // TODO : 우클릭 시 상호작용 해제 (수정 예정)
         else if (Input.GetMouseButtonDown(1))
         {
             if (interactingActor != null)

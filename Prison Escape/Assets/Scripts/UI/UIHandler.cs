@@ -18,37 +18,41 @@ public class UIHandler : MonoBehaviour
     
     void Update()
     {
-        if(hit.collider != null)
+        // 기존에 감지된 오브젝트의 하이라이트 초기화
+        if (hit.collider != null)
         {
             hit.collider.GetComponent<Highlight>()?.SetHighlight(false);
-            pickUpUIText.color = new Color(
-                pickUpUIText.color.r,
-                pickUpUIText.color.g,
-                pickUpUIText.color.b,
-                0.0f
-            );
-            aimUI.SetBigger(false);
         }
         
+        // 오브젝트 감지를 위한 레이 생성
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         Debug.DrawRay(ray.origin, ray.direction * hitRange, Color.red);
         
-        if(Physics.Raycast(
-               ray,
-               out hit, 
-               hitRange, 
-               pickableLayerMask
-           ))
+        // UI 업데이트
+        UpdateUI(Physics.Raycast(
+            ray,
+            out hit,
+            hitRange,
+            pickableLayerMask
+        ));
+        
+        // 감지된 물체가 있으면 하이라이트
+        if (hit.collider != null)
         {
             hit.collider.GetComponent<Highlight>()?.SetHighlight(true);
-            pickUpUIText.color = new Color(
-                pickUpUIText.color.r,
-                pickUpUIText.color.g,
-                pickUpUIText.color.b,
-                1.0f
-            );
-            aimUI.SetBigger(true);
         }
+    }
+    
+    // UI 업데이트
+    private void UpdateUI(bool isTriggered)
+    {
+        pickUpUIText.color = new Color(
+            pickUpUIText.color.r,
+            pickUpUIText.color.g,
+            pickUpUIText.color.b,
+            isTriggered ? 1.0f : 0.0f
+        );
+        aimUI.SetBigger(isTriggered);
     }
 
     public void ChangeDialogue(string dialogue)
