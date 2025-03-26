@@ -31,8 +31,9 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
 
     private IEnumerator InteractSequence(GameObject actor, GameObject useItem)
     {
-        // 상호작용하지 옷하게 PlayerInput 비활성화
+        // 상호작용하지 옷하게 PlayerInput과 콜리전 비활성화
         playerInput.enabled = false;
+        GetComponent<Collider>().enabled = false;
         
         // 페이드 아웃
         yield return fadePanel.FadeIn(fadeDuration);
