@@ -16,9 +16,13 @@ public class PlayerMove : MonoBehaviour
     private Vector2 lookDirection = Vector2.zero;
     private Vector2 inputDirection = Vector2.zero;
     private float xRotation = 0f;
+    
+    private AudioSource walkAudio;
 
     private void Start()
     {
+        walkAudio = GetComponent<AudioSource>();
+        
         Vector2 StartDirection = new Vector2(transform.eulerAngles.x, transform.eulerAngles.z);
         lookDirection = StartDirection;
         RotateCamera();
@@ -42,6 +46,7 @@ public class PlayerMove : MonoBehaviour
         RotateCamera();
         ApplyGravity();
         MovePlayer();
+        UpdateWalkSound();
     }
     private void MoveDir(Vector2 direction)
     {
@@ -87,6 +92,20 @@ public class PlayerMove : MonoBehaviour
     {
         moveDirection = Vector3.zero;
         inputDirection = Vector2.zero;
+    }
+
+    private void UpdateWalkSound()
+    {
+        Vector3 xzVelocity = characterController.velocity - characterController.velocity.y * Vector3.up;
+        if (xzVelocity.magnitude > 0.0f && !walkAudio.isPlaying)
+        {
+            walkAudio.Play();
+        }
+
+        if (xzVelocity.magnitude <= 0.0f && walkAudio.isPlaying)
+        {
+            walkAudio.Stop();
+        }
     }
 }
 
