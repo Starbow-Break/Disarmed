@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float gravity = 9.81f;
 
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private PlayerController_TMP playerController;
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private CameraMove cameraMove;
     [SerializeField] private GameObject mainCamera;
     

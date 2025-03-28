@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController_TMP : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     

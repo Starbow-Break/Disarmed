@@ -13,8 +13,6 @@ public class ActiveCauldron : MonoBehaviour
     private static string root = "";
     private static string green = "";
     public bool isSelected { get; private set; }
-    private int yesitem = 0;
-    private int noitem = 1;
     private int rootCount;
     private int greenCount;
 

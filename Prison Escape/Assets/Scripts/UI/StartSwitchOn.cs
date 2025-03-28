@@ -6,8 +6,7 @@ public class StartSwitchOn : BaseDialogue
 {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private PlayWitchAudio WitchAudioClips;
-
-    private int clicked_again = 3;
+    
     public void StartDialogue(int number)
     {
         if (dialogue == null || uiHandler == null)
