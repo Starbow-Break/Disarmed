@@ -13,13 +13,17 @@ public class PlayerMove : MonoBehaviour
     public static event Action<bool> PlayerMoved;
     
     // Vector2로 받은 값을 Vector3로 변환
-    private Vector2 inputDirection = Vector2.zero;
     private Vector3 moveDirection = Vector3.zero;
+    private Vector2 inputDirection = Vector2.zero;
     
     // 플레이어 이동 여부 판단 지표
     private const float StopSpeed = 0.0f;
-    private bool moveState = false;
+    private bool moveState;
 
+    private void Awake()
+    {
+        moveState = false;
+    }
     private void Update()
     {
         UpdateMoveDirection();
@@ -33,12 +37,6 @@ public class PlayerMove : MonoBehaviour
         Vector2 moveInput = context.ReadValue<Vector2>();
         
         inputDirection = moveInput;
-    }
-    
-    public void SetDirectionZero()
-    {
-        moveDirection = Vector3.zero;
-        inputDirection = Vector2.zero;
     }
 
     private void UpdateMoveDirection()
