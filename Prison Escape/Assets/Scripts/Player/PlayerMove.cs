@@ -4,65 +4,51 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    [SerializeField] private float gravity = 9.81f;
-
+    // 플레이어 이동을 제어 변수
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private PlayerController playerController;
-    [SerializeField] private CameraMove cameraMove;
-    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private float gravity = 9.81f;
+    [SerializeField] private float moveSpeed = 5f;
     
-    private Vector3 moveDirection = Vector3.zero;
-    private Vector2 lookDirection = Vector2.zero;
+    // 플레이어가 현재 이동 여부를 알려줌
+    public static event Action<bool> PlayerMoved;
+    
+    // Vector2로 받은 값을 Vector3로 변환
     private Vector2 inputDirection = Vector2.zero;
-    private float xRotation = 0f;
+    private Vector3 moveDirection = Vector3.zero;
     
-    private AudioSource walkAudio;
+    // 플레이어 이동 여부 판단 지표
+    private const float StopSpeed = 0.0f;
+    private bool moveState = false;
 
-    private void Start()
-    {
-        walkAudio = GetComponent<AudioSource>();
-        
-        Vector2 StartDirection = new Vector2(transform.eulerAngles.x, transform.eulerAngles.z);
-        lookDirection = StartDirection;
-        RotateCamera();
-    }
-
-    private void OnEnable()
-    {
-        playerController.OnMoveEvent += MoveDir;
-        cameraMove.OnLookEvent += LookDir;
-    }
-    
-    private void OnDisable()
-    {
-        playerController.OnMoveEvent -= MoveDir;
-        cameraMove.OnLookEvent -= LookDir;
-    }
     private void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward, Color.red);
         UpdateMoveDirection();
-        RotateCamera();
         ApplyGravity();
         MovePlayer();
-        UpdateWalkSound();
+        UpdateWalkState();
     }
-    private void MoveDir(Vector2 direction)
+    
+    public void OnMove(InputAction.CallbackContext context)
     {
-        inputDirection = direction;
+        Vector2 moveInput = context.ReadValue<Vector2>();
+        
+        inputDirection = moveInput;
+    }
+    
+    public void SetDirectionZero()
+    {
+        moveDirection = Vector3.zero;
+        inputDirection = Vector2.zero;
     }
 
-    private void LookDir(Vector2 direction)
+    private void UpdateMoveDirection()
     {
-        lookDirection = direction;
+        Vector3 newMoveDirection = transform.right * inputDirection.x + transform.forward * inputDirection.y;
+        
+        moveDirection.x = newMoveDirection.x;
+        moveDirection.z = newMoveDirection.z;
     }
-
-    private void MovePlayer()
-    {
-        characterController.Move(moveDirection * (Time.deltaTime * moveSpeed));
-    }
-
+    
     private void ApplyGravity()
     {
         if (!characterController.isGrounded)
@@ -70,41 +56,23 @@ public class PlayerMove : MonoBehaviour
             moveDirection.y -= gravity * Time.fixedDeltaTime;
         }
     }
-    private void UpdateMoveDirection()
+    
+    private void MovePlayer()
     {
-        float previousY = moveDirection.y;
-        moveDirection = transform.right * inputDirection.x + transform.forward * inputDirection.y;
-        moveDirection.y = previousY;
-    }
-
-
-    private void RotateCamera()
-    {
-        transform.Rotate(Vector3.up * lookDirection.x);
+        var move = moveDirection * (Time.deltaTime * moveSpeed);
         
-        xRotation -= lookDirection.y;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        
-        mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        characterController.Move(move);
     }
 
-    public void SetDirectionZero()
+    private void UpdateWalkState()
     {
-        moveDirection = Vector3.zero;
-        inputDirection = Vector2.zero;
-    }
+        var xzVelocity = characterController.velocity - characterController.velocity.y * Vector3.up;
+        var currentMoveState = xzVelocity.magnitude > StopSpeed;
 
-    private void UpdateWalkSound()
-    {
-        Vector3 xzVelocity = characterController.velocity - characterController.velocity.y * Vector3.up;
-        if (xzVelocity.magnitude > 0.0f && !walkAudio.isPlaying)
+        if (currentMoveState != moveState)
         {
-            walkAudio.Play();
-        }
-
-        if (xzVelocity.magnitude <= 0.0f && walkAudio.isPlaying)
-        {
-            walkAudio.Stop();
+            PlayerMoved?.Invoke(currentMoveState);
+            moveState = currentMoveState;
         }
     }
 }
