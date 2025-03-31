@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class ChessBarrel: MonoBehaviour, IFocusable
 {
+    [Header("Player Control")] 
+    [SerializeField] private PlayerLoading playerLoading;
+    
     [Header("Board")]
     [SerializeField] private ChessBoard chessBoard; // 사용하는 체스 보드
 
@@ -33,6 +36,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     [SerializeField] private AudioClip moveClip;
     [SerializeField] private AudioClip captureClip;
     
+    [Header("Events")]
     [SerializeField] private UnityEvent OnSuccess;
     
     private Vector2Int targetCurrentPosition; // 목표 기물의 현재위치
@@ -69,7 +73,6 @@ public class ChessBarrel: MonoBehaviour, IFocusable
             return;
         }
         
-        // TODO : 마우스 좌클릭시 커서가 오브젝트를 가리키고 있으면 해당 오브젝트 선택 (수정 예정)
         if (Input.GetMouseButtonDown(0))
         {   
             // 스크린에서 마우스 클릭 위치를 통과하는 광선 생성
@@ -141,7 +144,6 @@ public class ChessBarrel: MonoBehaviour, IFocusable
                 }
             }
         }
-        // TODO : 우클릭 시 상호작용 해제 (수정 예정)
         else if (Input.GetMouseButtonDown(1))
         {
             if (interactingActor != null)
@@ -174,9 +176,11 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     // player랑 상호작용 시작
     public void Focus(GameObject actor)
     {
-        CameraSwitcher.instance.SwitchCamera("Interaction Camera");
+        CameraSwitcher.instance.SwitchCamera(
+            cameraName: "Interaction Camera", 
+            beforeSwitch: () => PlayerLoading.PlayerSetStop());
+        
         CursorLocker.instance.UnlockCursor();
-        actor.GetComponent<PlayerMove>().enabled = false;
         interactingActor = actor;
         boxCollider.enabled = false;
     }
@@ -185,9 +189,11 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     public void UnFocus(GameObject actor)
     {
         isSelected = false;
-        CameraSwitcher.instance.SwitchCamera("Player Camera");
+        CameraSwitcher.instance.SwitchCamera(
+            cameraName: "Player Camera",
+            afterSwitch: () => PlayerLoading.PlayerSetStart());
+        
         CursorLocker.instance.LockCursor();
-        actor.GetComponent<PlayerMove>().enabled = true;
         interactingActor = null;
         boxCollider.enabled = true;
     }
