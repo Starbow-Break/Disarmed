@@ -1,41 +1,31 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Highlight : MonoBehaviour
 {
-    [SerializeField] private List<Renderer> renderers;      // 오브젝트에서 사용하는 렌더러들
-    [SerializeField] Color highlightColor = Color.white;    // 하이라이트 색
+    [SerializeField] Outline outline;
 
-    private List<Material> materials;   // 사용하는 모든 머터리얼들
+    private bool isEnabled = false;
+    private bool dirtyFlag = false;
 
-    private void Awake()
+    private void Start()
     {
-        // 렌더러에 할당된 모든 머터리얼들을 추출
-        materials = new List<Material>();
-        foreach(var renderer in renderers)
+        // 처음에는 비활성화
+        SetHighlight(false);
+    }
+
+    private void Update()
+    {
+        if (dirtyFlag)
         {
-            materials.AddRange(new List<Material>(renderer.materials));
+            dirtyFlag = false;
+            outline.enabled = isEnabled;
         }
     }
 
+    // 하이라이트 여부 설정
     public void SetHighlight(bool value)
     {
-        if (value)
-        {
-            // emission 키워드 활성화 및 emission color를 highlight color로 변경
-            foreach (var material in materials)
-            {
-                material.EnableKeyword("_EMISSION");
-                material.SetColor("_EmissionColor", highlightColor);
-            }
-        }
-        else
-        {
-            foreach (var material in materials)
-            {
-                // emission 키워드 비활성화
-                material.DisableKeyword("_EMISSION");
-            }
-        }
+        isEnabled = value;
+        dirtyFlag = true;
     }
 }

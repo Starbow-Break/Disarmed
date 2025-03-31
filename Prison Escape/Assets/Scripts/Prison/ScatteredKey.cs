@@ -14,10 +14,12 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
     [SerializeField] private PlayerInput playerInput;
     
     private AudioSource audioSource;
+    private ScatteredKeyDialogue dialogue;
 
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        dialogue = GetComponent<ScatteredKeyDialogue>();
     }
     
     public void InteractUseItem(GameObject actor, GameObject useItem)
@@ -26,6 +28,10 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
         if (useItem == needItem)
         {
             StartCoroutine(InteractSequence(actor, useItem));
+        }
+        else // 다르면 실패 다이얼로그 재생
+        {
+            dialogue.PlayFailDialogue();
         }
     }
 
