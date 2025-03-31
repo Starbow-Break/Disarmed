@@ -4,9 +4,6 @@ using UnityEngine.InputSystem;
 
 public class ChessBarrel: MonoBehaviour, IFocusable
 {
-    [Header("Player Control")] 
-    [SerializeField] private PlayerLoading playerLoading;
-    
     [Header("Board")]
     [SerializeField] private ChessBoard chessBoard; // 사용하는 체스 보드
 
