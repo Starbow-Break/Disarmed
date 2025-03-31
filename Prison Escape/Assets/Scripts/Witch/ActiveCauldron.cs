@@ -54,7 +54,8 @@ public class ActiveCauldron : MonoBehaviour, IItemInteractable
         ActiveSwitch.Reset -= ResetCauldron;
         if (ActiveSwitch.onSwitch == CalculateResult) ActiveSwitch.onSwitch = null;
     }
-
+    
+    
     public void InteractUseItem(GameObject actor, GameObject useItem)
     {
         UsableIngredients ingredient = null;
@@ -77,16 +78,18 @@ public class ActiveCauldron : MonoBehaviour, IItemInteractable
         }
 
         useItem.GetComponent<IUsable>()?.Use(actor);
-
     }
 
+    
     private void ResetCauldron()
     {
         inCauldronList.Clear();
     }
     
-
-    public SwitchState CalculateResult()
+    /* 1차적으로 리스트에 값이 정답만큼 없으면 실패
+     * 2차적으로 리스트를 정렬하고 문자열을 정답과 비교하여 값 반환
+     */
+    private SwitchState CalculateResult()
     {
         if (inCauldronList.Count == 0)
         {

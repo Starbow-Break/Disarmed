@@ -9,9 +9,6 @@ public class ActiveSwitch : MonoBehaviour
     [SerializeField] private Door door;
 
     private Dictionary<SwitchState, Action> stateActions;
-
-    public static Func<SwitchState> onSwitch;
-    public static event Action Reset;
     
     private void Awake()
     {
@@ -26,7 +23,7 @@ public class ActiveSwitch : MonoBehaviour
     private void SwitchEnter()
     {
         var resultState = audioSource.isPlaying ? SwitchState.Again
-            : onSwitch?.Invoke() ?? SwitchState.Failed;
+            : onSwitch?.Invoke() ?? SwitchState.Nodata;
         
         if (stateActions.TryGetValue(resultState, out var action))
         {
@@ -45,15 +42,15 @@ public class ActiveSwitch : MonoBehaviour
             { SwitchState.Again, AgainAction }
         };
     }
+    
+    private void FailAction()
+    {
+        Reset?.Invoke();
+    }
    
     private void SuccessAction()
     {
         door.Open();
-    }
-
-    private void FailAction()
-    {
-        Reset?.Invoke();
     }
 
     private void AgainAction()
@@ -61,4 +58,10 @@ public class ActiveSwitch : MonoBehaviour
         audioSource.Stop();
         Debug.Log("Again");
     }
+    
+    #region Delegates
+        public static Func<SwitchState> onSwitch;
+        public static event Action Reset;
+        
+    #endregion
 }
