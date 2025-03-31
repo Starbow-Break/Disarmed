@@ -37,7 +37,7 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
 
     private IEnumerator InteractSequence(GameObject actor, GameObject useItem)
     {
-        // 상호작용하지 옷하게 PlayerInput과 콜리전 비활성화
+        // 상호작용하지 못하게 PlayerInput과 콜리전 비활성화
         playerInput.enabled = false;
         GetComponent<Collider>().enabled = false;
         
@@ -51,6 +51,7 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
             item.transform.position = actor.transform.position;
         }
         GetComponent<Renderer>().enabled = false;
+        useItem.GetComponent<IUsable>()?.Use(actor);
         
         // 효과음 재생
         audioSource.Play();
