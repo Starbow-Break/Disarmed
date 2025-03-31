@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class ChessBarrel: MonoBehaviour, IFocusable
 {
@@ -47,6 +48,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     private BoxCollider boxCollider; // 포커스 용 콜리전
     
     private bool isLock = true; // 잠금 여부
+    private bool needUnlockAction = false;
     private AudioSource audioSource;
 
     void Start()
@@ -56,104 +58,105 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         audioSource = GetComponent<AudioSource>();
         CreatePuzzle();
     }
-    
-    void Update()
+
+    private void Update()
     {
-        // 게임이 일시정지된 상태면 어떠한 작업도 하지 않는다.
-        if (GamePause.isPaused)
-        {
-            return;
-        }
-        
         // 이미 잠금 해제됐다면 기물의 하이라이트만 꺼주고 종료한다.
-        if (!isLock)
+        if (!isLock && needUnlockAction)
         {
+            needUnlockAction = false;
             isSelected = false;
             targetPiece.GetComponent<Highlight>()?.SetHighlight(isSelected);
+        }
+    }
+
+    public void OnLeftClick(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            LeftClickAction();
+        }
+    }
+
+    private void LeftClickAction()
+    {
+        // 게임이 일시정지된 상태이거나 상호작용하는 액터가 없다면 로직 중지
+        if (GamePause.isPaused || interactingActor == null)
+        {
             return;
         }
         
-        if (Input.GetMouseButtonDown(0))
-        {   
-            // 스크린에서 마우스 클릭 위치를 통과하는 광선 생성
-            Vector3 mousePosition = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-            
-            // 광선이 오브젝트를 감지하면 해당 오브젝트 선택을 시도
-            if (Physics.Raycast(ray, out RaycastHit hit))
+        // 스크린에서 마우스 클릭 위치를 통과하는 광선 생성
+        Vector3 mousePosition = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        
+        // 광선이 오브젝트를 감지하면 해당 오브젝트 선택을 시도
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            // 아직 기물을 두지 않았고 기물을 선택하지 않았다면
+            if (!isPut && !isSelected)
             {
-                // 아직 기물을 두지 않았고 기물을 선택하지 않았다면
-                if (!isPut && !isSelected)
+                // 선택한것이 기물이라면 선택 상태로 만든다.
+                if (hit.collider.gameObject == targetPiece)
                 {
-                    // 선택한것이 기물이라면 선택 상태로 만든다.
-                    if (hit.collider.gameObject == targetPiece)
+                    SelectTargetPiece();
+                }
+                return;
+            }
+            
+            Vector2Int select = chessBoard.GetSquarePositionFromCollider(hit.collider);
+            // 어떠한 칸도 선택하지 않았다면 선택 상태 해제
+            if(select.x == -1 && select.y == -1)
+            {
+                DeSelectTargetPiece();
+            }
+            else // 칸을 선택했다면
+            {
+                // 기물을 선택한 상태가 아니고 선택한 칸이 기물이 있는 칸이면 선택 상태로 변경
+                if (!isSelected)
+                {
+                    if (targetCurrentPosition == select)
                     {
                         SelectTargetPiece();
                     }
-                    return;
                 }
-                
-                Vector2Int select = chessBoard.GetSquarePositionFromCollider(hit.collider);
-                // 어떠한 칸도 선택하지 않았다면 선택 상태 해제
-                if(select.x == -1 && select.y == -1)
+                else
                 {
-                    DeSelectTargetPiece();
-                }
-                else // 칸을 선택했다면
-                {
-                    // 기물을 선택한 상태가 아니고 선택한 칸이 기물이 있는 칸이면 선택 상태로 변경
-                    if (!isSelected)
+                    // 기물을 선택한 상태인데 선택이 가능한 칸이면 해당 칸으로 기물 이동
+                    if (canSelected[select.x, select.y])
                     {
-                        if (targetCurrentPosition == select)
+                        targetPiece.transform.position = chessBoard.GetSquareWorldPosition(select.x, select.y);
+                        targetPiece.transform.rotation = chessBoard.transform.rotation;
+                        targetCurrentPosition = select;
+                        targetPiece.GetComponent<Highlight>()?.SetHighlight(false);
+                        isSelected = false;
+                        audioSource.PlayOneShot(moveClip);
+                        
+                        // 기물을 처음 놓았다면 isPut을 true로 바꾸고 기물의 콜리전을 끈다.
+                        if (!isPut)
                         {
-                            SelectTargetPiece();
+                            isPut = true;
+                            targetPiece.GetComponent<Collider>().enabled = false;
+                        }
+                        
+                        // 기물이 목표 지점에 놓였다면 잠금 상태 해제
+                        if (targetCurrentPosition == targetPosition)
+                        {
+                            isLock = false;
+                            needUnlockAction = false;
+                            OnSuccess?.Invoke();
                         }
                     }
-                    else
+                    else // 기물을 선택한 상태인데 선택 기능한 칸이 아니면 선택 상태 해제
                     {
-                        // 기물을 선택한 상태인데 선택이 가능한 칸이면 해당 칸으로 기물 이동
-                        if (canSelected[select.x, select.y])
-                        {
-                            targetPiece.transform.position = chessBoard.GetSquareWorldPosition(select.x, select.y);
-                            targetPiece.transform.rotation = chessBoard.transform.rotation;
-                            targetCurrentPosition = select;
-                            targetPiece.GetComponent<Highlight>()?.SetHighlight(false);
-                            isSelected = false;
-                            audioSource.PlayOneShot(moveClip);
-                            
-                            // 기물을 처음 놓았다면 isPut을 true로 바꾸고 기물의 콜리전을 끈다.
-                            if (!isPut)
-                            {
-                                isPut = true;
-                                targetPiece.GetComponent<Collider>().enabled = false;
-                            }
-                            
-                            // 기물이 목표 지점에 놓였다면 잠금 상태 해제
-                            if (targetCurrentPosition == targetPosition)
-                            {
-                                isLock = false;
-                                OnSuccess?.Invoke();
-                                return;
-                            }
-                        }
-                        else // 기물을 선택한 상태인데 선택 기능한 칸이 아니면 선택 상태 해제
-                        {
-                            DeSelectTargetPiece();
-                        }
+                        DeSelectTargetPiece();
                     }
                 }
-            }
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            if (interactingActor != null)
-            {
-                UnFocus(interactingActor);   
             }
         }
     }
 
-    void SelectTargetPiece()
+    private void SelectTargetPiece()
     {
         if (!isSelected)
         {
@@ -163,7 +166,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         }
     }
     
-    void DeSelectTargetPiece()
+    private void DeSelectTargetPiece()
     {
         if (isSelected)
         {

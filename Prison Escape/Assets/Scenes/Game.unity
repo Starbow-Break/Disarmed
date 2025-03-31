@@ -5847,6 +5847,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3957436494895789125, guid: ff56f17ac88027843b81bbe83bea2808, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4113582668336583604, guid: ff56f17ac88027843b81bbe83bea2808, type: 3}
       propertyPath: m_Name
       value: Chess Barrel
@@ -10420,6 +10424,34 @@ PrefabInstance:
     - target: {fileID: 5256322767974442649, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658601771597802904, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658601771597802904, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658601771597802904, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1789403720}
+    - target: {fileID: 7658601771597802904, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658601771597802904, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnLeftClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658601771597802904, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ChessBarrel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658601771597802904, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25426,6 +25458,17 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1789403720 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1999229517694180309, guid: ff56f17ac88027843b81bbe83bea2808, type: 3}
+  m_PrefabInstance: {fileID: 386257459}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3878d8ad684a35a48bb5cc4b62454777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1790659782
 PrefabInstance:
   m_ObjectHideFlags: 0
