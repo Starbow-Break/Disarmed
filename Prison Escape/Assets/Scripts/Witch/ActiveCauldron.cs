@@ -1,27 +1,58 @@
 using System;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class ActiveCauldron : MonoBehaviour, IItemInteractable
 {
-    [SerializeField] private String[] ingredients;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] 
+    private AudioSource audioSource;
     
-    private static string root = "";
-    private static string green = "";
-    public bool isSelected { get; private set; }
-    private int rootCount;
-    private int greenCount;
+    [SerializeField]
+    private List<IngredientData> ingredientList;
+    
+    private Dictionary<string, IngredientData> ingredients;
+    private List<string> inCauldronList;
 
-    private void Start()
+    // 현재 답이 뿌리(RR) + 초록포션(PS) 이므로 이를 알파벳 순서로 정렬한 문자열
+    private const string CorrectAnswer = "PSRR";
+    private const int CorrectNumber = 2;
+    
+
+    private void Awake()
     {
-        isSelected = false;
-        rootCount = 0;
-        greenCount = 0;
+        inCauldronList = new List<string>();
         
-        root = ingredients[0];
-        green = ingredients[1];
+        #region SetDictionary
+        
+            ingredients = new Dictionary<string, IngredientData>();
+            
+            foreach (var ingredientData in ingredientList)
+            {
+                if (ingredientData.prefab == null)
+                {
+                    Debug.LogError($"prefab이 {ingredientData}에 비어있음");
+                    continue;
+                }
+                
+                var ingredientName = ingredientData.prefab.name;
+                ingredients.Add(ingredientName, ingredientData);
+            }
+        
+        #endregion
+    }
+
+    private void OnEnable()
+    {
+        ActiveSwitch.Reset += ResetCauldron;
+        ActiveSwitch.onSwitch = CalculateResult;
+    }
+
+    private void OnDisable()
+    {
+        ActiveSwitch.Reset -= ResetCauldron;
+        if (ActiveSwitch.onSwitch == CalculateResult) ActiveSwitch.onSwitch = null;
     }
 
     public void InteractUseItem(GameObject actor, GameObject useItem)
@@ -35,41 +66,53 @@ public class ActiveCauldron : MonoBehaviour, IItemInteractable
         if (ingredient == null)
         {
             Debug.Log("Item is null");
+            return;
         }
-        else
-        {
-            audioSource.Play();
-            if(!isSelected) isSelected = true;
-            Debug.Log("Item is " + useItem.name);
-            if (useItem.name == root)
-            {
-                rootCount++;
-                Debug.Log($"root: {rootCount}");
-            }
-            else if (useItem.name == green)
-            {
-                greenCount++;
-                Debug.Log($"green: {greenCount}");
-            }
+        
+        audioSource.Play();
 
-            useItem.GetComponent<IUsable>()?.Use(actor);
+        if (ingredients.TryGetValue(ingredient.name, out var foundIngredient))
+        {
+            inCauldronList?.Add(foundIngredient.id);
         }
+
+        useItem.GetComponent<IUsable>()?.Use(actor);
+
     }
 
-    public void ResetCauldron()
+    private void ResetCauldron()
     {
-        isSelected = false;
-        rootCount = 0;
-        greenCount = 0;
+        inCauldronList.Clear();
     }
+    
 
-    public bool CaculateResult()
+    public SwitchState CalculateResult()
     {
-        if (rootCount == 1 && greenCount == 1)
+        if (inCauldronList.Count == 0)
         {
-            return true;
+            return SwitchState.Nodata;
         }
 
-        return false;
+        if (inCauldronList.Count != CorrectNumber)
+        {
+            return SwitchState.Failed;
+        }
+        
+        var sortedList = inCauldronList.OrderBy(ingredient => ingredient).ToList();
+        var builder = new StringBuilder();
+        
+        foreach (var ingredient in sortedList)
+        {
+            builder.Append(ingredient);
+        }
+        
+        string result = builder.ToString();
+        
+        if (result == CorrectAnswer)
+        {
+            return SwitchState.Success;
+        }
+
+        return SwitchState.Failed;
     }
 }

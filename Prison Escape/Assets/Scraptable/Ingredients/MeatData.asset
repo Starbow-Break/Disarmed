@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MeatData
   m_EditorClassIdentifier: 
   id: RM
-  name: Meat
+  englishName: Meat
   prefab: {fileID: 7518087155339778642, guid: d6ff67c80913aa5479e41a15f4afab04, type: 3}

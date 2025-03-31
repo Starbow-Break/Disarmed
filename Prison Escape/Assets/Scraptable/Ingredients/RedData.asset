@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RedData
   m_EditorClassIdentifier: 
   id: PH
-  name: Potion_Red
+  englishName: Potion_Red
   prefab: {fileID: 4323698086102230256, guid: e35b23c9b13aa6f429b98eddb36cd965, type: 3}

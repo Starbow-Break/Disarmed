@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GreenData
   m_EditorClassIdentifier: 
   id: PS
-  name: Potion_Green
+  englishName: Potion_Green
   prefab: {fileID: 7602402651133253482, guid: bdc1545280a793c4a9d23371b7706ecb, type: 3}

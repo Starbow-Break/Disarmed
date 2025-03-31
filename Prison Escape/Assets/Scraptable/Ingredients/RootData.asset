@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RootData
   m_EditorClassIdentifier: 
   id: RR
-  name: Plant_Root
+  englishName: Plant_Root
   prefab: {fileID: 701965859736018583, guid: 95eb76882de766f45bc4fcd6079b2624, type: 3}
