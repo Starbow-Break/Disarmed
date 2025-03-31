@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +7,6 @@ public class EventHandler : MonoBehaviour
     // public event Action<float> OnDropEvent;
     
     [SerializeField] private GameObject player; //이거는 플레이어 정보를 넘겨줄 필요가 있을 때에 필요해서
-    [SerializeField] private PlayerController playerController;
     [SerializeField] private PlayerPickup playerPickup;
     [SerializeField] private GameObject playerUI;
     [SerializeField, Min(1)] private float hitRange = 3.0f;

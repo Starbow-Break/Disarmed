@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 7866436461163463443}
+  boxCollider: {fileID: 6746460225791120649}
   target: {fileID: 2529327866919935932}
   trapTime: 0.1
   waittime: 0.3
