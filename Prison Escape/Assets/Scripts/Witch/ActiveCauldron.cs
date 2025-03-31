@@ -3,10 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class ActiveCauldron : MonoBehaviour
+public class ActiveCauldron : MonoBehaviour, IItemInteractable
 {
-    public static event Action<GameObject> OnCauldron;
-    
     [SerializeField] private String[] ingredients;
     [SerializeField] private AudioSource audioSource;
     
@@ -26,48 +24,35 @@ public class ActiveCauldron : MonoBehaviour
         green = ingredients[1];
     }
 
-    private void OnEnable()
+    public void InteractUseItem(GameObject actor, GameObject useItem)
     {
-        OnCauldron += CauldronEnter;
-    }
-
-    private void OnDisable()
-    {
-        OnCauldron -= CauldronEnter;
-    }
-
-    public void TriggerCauldron(GameObject player)
-    {
-        OnCauldron?.Invoke(player);
-    }
-
-    private void CauldronEnter(GameObject player)
-    {
-        PlayerPickup playerPickup = player.GetComponent<PlayerPickup>();
-        if (playerPickup != null)
+        UsableIngredients ingredient = null;
+        if (useItem != null)
         {
-            GameObject item = playerPickup.inHandItem;
+            ingredient = useItem.GetComponent<UsableIngredients>();
+        }
 
-            if (item == null)
+        if (ingredient == null)
+        {
+            Debug.Log("Item is null");
+        }
+        else
+        {
+            audioSource.Play();
+            if(!isSelected) isSelected = true;
+            Debug.Log("Item is " + useItem.name);
+            if (useItem.name == root)
             {
-                Debug.Log("Item is null");
+                rootCount++;
+                Debug.Log($"root: {rootCount}");
             }
-            else
+            else if (useItem.name == green)
             {
-                audioSource.Play();
-                if(!isSelected) isSelected = true;
-                Debug.Log("Item is " + item.name);
-                if (item.name == root)
-                {
-                    rootCount++;
-                    Debug.Log($"root: {rootCount}");
-                }
-                else if (item.name == green)
-                {
-                    greenCount++;
-                    Debug.Log($"green: {greenCount}");
-                }
+                greenCount++;
+                Debug.Log($"green: {greenCount}");
             }
+
+            useItem.GetComponent<IUsable>()?.Use(actor);
         }
     }
 
