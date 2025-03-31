@@ -52,7 +52,8 @@ public class UIHandler : MonoBehaviour
             pickUpUIText.color.b,
             isTriggered ? 1.0f : 0.0f
         );
-        aimUI.SetBigger(isTriggered);
+        
+        aimUI.SetAimPoint(isTriggered, hit.collider?.GetComponent<IFocusable>() != null);
     }
 
     public void ChangeDialogue(string dialogue)

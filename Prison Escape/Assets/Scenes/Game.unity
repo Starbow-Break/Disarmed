@@ -10401,6 +10401,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2708314673073399264, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: focusableSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bb402dfa89441b546bb33c9e46b028bf, type: 3}
+    - target: {fileID: 2708314673073399264, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: unfocusableSprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 2708314673073399264, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: nonFocusableSprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 5001075317408310446, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5256322767974442649, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
       propertyPath: m_Name
       value: Player
