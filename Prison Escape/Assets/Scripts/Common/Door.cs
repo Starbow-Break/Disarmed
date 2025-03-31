@@ -21,6 +21,7 @@ public class Door : MonoBehaviour, IItemInteractable
         if (needItem != null && useItem == needItem)
         {
             Open();
+            useItem.GetComponent<IUsable>()?.Use(actor);
         }
         else
         {
