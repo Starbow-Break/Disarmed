@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b6d45d3b866774995855f61092b3b7, type: 3}
+  m_Name: SwitchOn
+  m_EditorClassIdentifier: 
+  dialogues:
+  - "\uB9C8\uB140 : \uBE48 \uC1A5\uC744 \uBCF4\uACE0 \uBB58 \uAE30\uB300\uD558\uB294
+    \uAC70\uC9C0? \n<size=40><b>\uB514\uB514\uC988\uCFE8\uB77C\uC0AC(jidhitkhulasa)</b></size>\uC758
+    \uC7AC\uB8CC\uB97C \uB123\uACE0 \uB2E4\uC2DC \uBD88\uB7EC\uB77C."
+  - "\uB9C8\uB140 : \uC644\uBCBD\uD558\uB2E4. \uC67C\uCABD\uC5D0 \uBCF4\uC774\uB294
+    \uBB38\uC744 \uC5F4\uC5B4\uC8FC\uC5C8\uB2E4. \uACC4\uB2E8\uC744 \uB530\uB77C
+    \uB0B4\uB824\uAC00\uBA74 \n\uBE44\uBC00\uD1B5\uB85C\uAC00 \uC788\uC744 \uAC83\uC774\uB2E4.
+    \uADF8 \uACF3\uC73C\uB85C \uAC00\uBCF4\uC544\uB77C."
+  - "\uB9C8\uB140: \uBB58 \uB9CC\uB4E0 \uAC70\uC9C0? \uB108\uC5D0\uAC90 \uC7AC\uB2A5\uC774
+    \uC5C6\uB294 \uAC83 \uAC19\uAD70.\n<size=40><b>\uB514\uB514\uC988\uCFE8\uB77C\uC0AC(jidhitkhulasa)</b></size>\uB97C
+    \uB9CC\uB4E4\uC5B4\uC57C \uD558\uAC70\uB298."
+  - "\uB9C8\uB140: \uB0B4 \uB9D0\uC774 \uC544\uC9C1 \uB05D\uB098\uC9C0 \uC54A\uC558\uB2E4."
