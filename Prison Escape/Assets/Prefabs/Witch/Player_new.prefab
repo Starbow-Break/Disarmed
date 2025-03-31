@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0026516f94bcb8446b76fdf5a78bc685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 315025000002294125}
   playerMove: {fileID: 4258386699300029411}
   cameraMove: {fileID: 7159011204951813234}
 --- !u!1 &4655892964224463110
