@@ -50,11 +50,6 @@ public class CameraSwitcher : MonoBehaviour
 
         activeCamera = null;
     }
-
-    private void Update()
-    {
-        Debug.Log(cinemachineBrain != null || cinemachineBrain.IsBlending);
-    }
     
     // 카메라를 cameraName에 해당하는 카메라로 변경
     public void SwitchCamera(string cameraName, Action beforeSwitch = null, Action afterSwitch = null)
