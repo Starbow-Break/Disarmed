@@ -7,17 +7,20 @@ using UnityEngine.Serialization;
 
 public class EndingEvent : MonoBehaviour
 {
-    [SerializeField] private FadePanel fadePanel;
-    [SerializeField] private float panelFadeDuration;
+    [SerializeField] private FadePanel fadePanel;   // FadePanel
+    [SerializeField] private float panelFadeDuration;   // 페이드 시간
 
-    [SerializeField] private ToBeContinuedText toBeContinuedText;
-    [SerializeField] private float textFadeDuration;
+    [SerializeField] private ToBeContinuedText toBeContinuedText;   // To Be Continued를 띄울 텍스트 
+    [SerializeField] private float textFadeDuration;    // 텍스트의 페이드 시간
+
+    [SerializeField] private float fadeInterval;    // 각 페이드마다 시간 간격
     
-    [SerializeField] private GameObject player;
-    [SerializeField] private Transform badEndingSpawnPoint;
+    [SerializeField] private GameObject player; // 플레이어
+    [SerializeField] private PrisonTrap prisonTrap; // 감옥 함정
+    [SerializeField] private Transform badEndingSpawnPoint; // 배드 엔딩 스폰 위치
 
-    [SerializeField] private PlayerInput playerInput;
-    [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] private PlayerInput playerInput;   // Player Input
+    [SerializeField] SceneLoader sceneLoader;   // Scene Loader
     
     public void BadEnding()
     {
@@ -31,21 +34,32 @@ public class EndingEvent : MonoBehaviour
 
     private IEnumerator BadEndingSequence()
     {
-        playerInput.enabled = false;
+        // 플레이어 위치를 함정 위치로 강제 고정
+        PlayerLoading.PlayerSetStop();
+        player.transform.position = prisonTrap.transform.position;
         
+        // 감옥 내리기
+        prisonTrap.Close();
+        yield return new WaitUntil(() => prisonTrap.isClosed);
+        
+        // 플레이어 조작 가능
+        PlayerLoading.PlayerSetStart();
+        
+        // 경비원 출현
+        
+        // FadePanel 페이드 인
         yield return fadePanel.FadeIn(panelFadeDuration);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(fadeInterval / 2.0f);
         
-        CharacterController characterController = player.GetComponent<CharacterController>();
-        characterController.enabled = false;
+        // 감옥 순간 이동
+        PlayerLoading.PlayerSetStop();
         player.transform.position = badEndingSpawnPoint.position;
         player.transform.rotation = badEndingSpawnPoint.rotation;
-        characterController.enabled = true;
+        PlayerLoading.PlayerSetStart();
         
-        yield return new WaitForSeconds(0.25f);
+        // FadePanel 페이드 아웃
+        yield return new WaitForSeconds(fadeInterval / 2.0f);
         yield return fadePanel.FadeOut(panelFadeDuration);
-        
-        playerInput.enabled = true;
     }
 
     private IEnumerator HappyEndingSequence()
@@ -53,12 +67,12 @@ public class EndingEvent : MonoBehaviour
         playerInput.enabled = false;
         
         yield return fadePanel.FadeIn(panelFadeDuration);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(fadeInterval);
         
         yield return toBeContinuedText.FadeIn(textFadeDuration);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(fadeInterval);
         yield return toBeContinuedText.FadeOut(textFadeDuration);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(fadeInterval);
         
         playerInput.enabled = true;
         CursorLocker.instance.UnlockCursor();
