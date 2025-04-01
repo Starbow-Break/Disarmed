@@ -36,10 +36,13 @@ public class UIHandler : MonoBehaviour
             pickableLayerMask
         ));
         
-        // 감지된 물체가 있으면 하이라이트
+        // 감지된 물체가 있으면 하이라이트 및 문구 띄우기
         if (hit.collider != null)
         {
             hit.collider.GetComponent<Highlight>()?.SetHighlight(true);
+            string interactText = hit.collider.GetComponent<InteractText>()?.GetText();
+            interactText = interactText ?? "-";
+            pickUpUIText.text = interactText;
         }
     }
     
@@ -52,7 +55,8 @@ public class UIHandler : MonoBehaviour
             pickUpUIText.color.b,
             isTriggered ? 1.0f : 0.0f
         );
-        aimUI.SetBigger(isTriggered);
+        
+        aimUI.SetAimPoint(isTriggered, hit.collider?.GetComponent<IFocusable>() != null);
     }
 
     public void ChangeDialogue(string dialogue)
