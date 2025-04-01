@@ -7,9 +7,6 @@ public class ActiveSavepoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            OnPlayerEnterSavepoint?.Invoke(gameObject);
-        }
+        OnPlayerEnterSavepoint?.Invoke(gameObject);
     }
 }

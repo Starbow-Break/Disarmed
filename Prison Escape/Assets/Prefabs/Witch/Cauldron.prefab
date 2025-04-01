@@ -245,10 +245,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a05f273c8c9b7541bdf090861584c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredients:
-  - Plant_Root
-  - Potion_Green
   audioSource: {fileID: 8603749150965641167}
+  ingredientList:
+  - {fileID: 11400000, guid: c907b23741dd5f848bc24e0a1e202cb0, type: 2}
+  - {fileID: 11400000, guid: 9ce2dcbbfb891a042bb3a057ab97e672, type: 2}
+  - {fileID: 11400000, guid: 6549b420da2e5a44ca2a83d394581d6b, type: 2}
+  - {fileID: 11400000, guid: 5e83814c64da90841bbc3b10d790fe7b, type: 2}
+  - {fileID: 11400000, guid: a6c335b4aa9918d4a87b72de8a4133d8, type: 2}
+  - {fileID: 11400000, guid: 0f1138b0af5d22d468f78eadfbf2e44c, type: 2}
 --- !u!82 &8603749150965641167
 AudioSource:
   m_ObjectHideFlags: 0

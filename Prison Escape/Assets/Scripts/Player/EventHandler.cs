@@ -46,7 +46,7 @@ public class EventHandler : MonoBehaviour
             switchComponent = target.AddComponent<ActiveSwitch>();
         }
                     
-        switchComponent.TriggeerSwitch();
+        switchComponent.TriggerSwitch();
     }
 
     private void LeftClick()
