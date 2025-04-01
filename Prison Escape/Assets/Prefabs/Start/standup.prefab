@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6011046576465675586
 Transform:
   m_ObjectHideFlags: 0
@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1524047156891532707}
+  - {fileID: 4915574802279203405}
   - {fileID: 3736785609190452697}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,35 +173,35 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -0.17522494
+        z: -0.15771078
       TangentOut:
         x: 0
         y: 0
-        z: 0.12972526
+        z: 0.10105301
       Rotation:
         value:
-          x: -0.18324113
-          y: 0.9793277
-          z: 0.06160576
-          w: -0.059536953
+          x: -0.1812833
+          y: 0.9795623
+          z: 0.07917337
+          w: -0.036409408
     - Position:
-        x: -0.47894764
-        y: 0.48475403
-        z: -1.2280682
+        x: -0.47215843
+        y: 0.4850278
+        z: -1.1318213
       TangentIn:
         x: -0
         y: -0
-        z: -0.035725147
+        z: -0.0267604
       TangentOut:
         x: 0
         y: 0
-        z: 0.035725147
+        z: 0.0267604
       Rotation:
         value:
-          x: -0.6802768
-          y: 0.71975666
-          z: 0.028112318
-          w: 0.13558574
+          x: -0.6739145
+          y: 0.712679
+          z: 0.029342877
+          w: 0.19252707
     m_MetaData:
     - Mode: 2
       Tension: 0.5
@@ -238,7 +239,7 @@ GameObject:
   - component: {fileID: 3947681690701906763}
   - component: {fileID: 4279888726189447806}
   m_Layer: 0
-  m_Name: CinemachineCamera (1)
+  m_Name: StandUp Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,8 +273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 20
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -351,3 +352,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: 0
+--- !u!1 &3144676789731069658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4915574802279203405}
+  - component: {fileID: 3318905606518531285}
+  m_Layer: 0
+  m_Name: AfterStand Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4915574802279203405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144676789731069658}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.01398258, y: -0.30812216, z: 0.0056150523, w: 0.9512275}
+  m_LocalPosition: {x: -6.1897, y: 1.7, z: 0.90470016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6011046576465675586}
+  m_LocalEulerAnglesHint: {x: -1.326, y: -35.909, z: 1.106}
+--- !u!114 &3318905606518531285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144676789731069658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 1
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 0}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 60.000004
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 5000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0

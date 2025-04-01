@@ -16,11 +16,6 @@ public class PlayerLoading : MonoBehaviour
         if (Instance == null)
             Instance = this;
     }
-    
-    private void Start()
-    {
-        LoadDelay();
-    }
 
     public static void LoadDelay()
     {
