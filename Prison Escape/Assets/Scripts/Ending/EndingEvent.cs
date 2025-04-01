@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -21,6 +22,7 @@ public class EndingEvent : MonoBehaviour
 
     [SerializeField] private PlayerInput playerInput;   // Player Input
     [SerializeField] SceneLoader sceneLoader;   // Scene Loader
+    [SerializeField] private List<GuardController> guardControllers;
     
     public void BadEnding()
     {
@@ -46,6 +48,14 @@ public class EndingEvent : MonoBehaviour
         PlayerLoading.PlayerSetStart();
         
         // 경비원 출현
+        int guardNum = guardControllers.Count;
+        foreach (GuardController guardController in guardControllers)
+        {
+            guardController.OnFinish += () => guardNum--;
+            guardController.Play();
+        }
+
+        yield return new WaitWhile(() => guardNum > 0);
         
         // FadePanel 페이드 인
         yield return fadePanel.FadeIn(panelFadeDuration);

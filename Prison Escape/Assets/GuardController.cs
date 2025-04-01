@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +8,34 @@ public class GuardController : MonoBehaviour
     [SerializeField] private List<Transform> routePoints; // 경비병의 경로
     [SerializeField] private float speed;
 
-    private bool isPlaying; // 재생 여부
+    public bool isPlaying { get; private set; } // 재생 여부
+    public bool isFinish { get; private set; }  // 도착 여부
+    public event Action OnFinish; // 이동 종료시 발생할 이벤트
+    
+    private Animator guardAnim; // 경비병의 애니메이터
     private int pointIndex; // 경비병이 지나간 지점 중 가장 나중에 지난 지점의 인덱스 번호
-
+    
     private void Start()
     {
+        guardAnim = guard.GetComponent<Animator>();
         Stop();
-        Play();
     }
 
     private void Update()
     {
+        if (isFinish)
+        {
+            return;
+        }
+        
+        if (pointIndex == routePoints.Count - 1)
+        {
+            isFinish = true;
+            guardAnim.SetTrigger("Finish");
+            OnFinish?.Invoke();
+            return;
+        }
+        
         if (isPlaying)
         {
             Move(speed * Time.deltaTime);
@@ -50,6 +68,7 @@ public class GuardController : MonoBehaviour
     // 재생
     public void Play()
     {
+        guard.SetActive(true);
         isPlaying = true;
     }
     
@@ -58,8 +77,9 @@ public class GuardController : MonoBehaviour
     {
         guard.transform.position = routePoints[0].position;
         guard.transform.rotation = routePoints[0].rotation;
-        
+        guard.SetActive(false);
         isPlaying = false;
+        isFinish = false;
         pointIndex = 0;
     }
 
