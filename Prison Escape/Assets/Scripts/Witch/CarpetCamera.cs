@@ -7,15 +7,19 @@ public class CarpetCamera : MonoBehaviour, IFocusable
     
     public void Focus(GameObject actor)
     {
-        CameraSwitcher.instance.SwitchCamera(targetcamera.name);
+        CameraSwitcher.instance.SwitchCamera(
+            cameraName: targetcamera.name, 
+            beforeSwitch: () => PlayerLoading.PlayerSetStop());
+        
         CursorLocker.instance.UnlockCursor();
-        actor.GetComponent<PlayerMove>().enabled = false;
     }
 
     public void UnFocus(GameObject actor)
     {
-        CameraSwitcher.instance.SwitchCamera("Player Camera");
+        CameraSwitcher.instance.SwitchCamera(
+            cameraName: "Player Camera",
+            afterSwitch: () => PlayerLoading.PlayerSetStart());
+        
         CursorLocker.instance.LockCursor();
-        actor.GetComponent<PlayerMove>().enabled = true;
     }
 }

@@ -310,7 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728973186017c0f439b99ca15ca33520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  biggerSizeMultiplier: 2
+  unfocusSizeMultiplier: 2
+  focusSizeMultiplier: 4
+  focusableSprite: {fileID: 21300000, guid: bb402dfa89441b546bb33c9e46b028bf, type: 3}
+  unfocusableSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &4410438553723132597
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +611,7 @@ GameObject:
   - component: {fileID: 4258386699300029411}
   - component: {fileID: 7159011204951813234}
   - component: {fileID: 2293619568882703381}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -707,6 +710,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4022622843665508709}
         m_TargetAssemblyTypeName: EventHandler, Assembly-CSharp
         m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ChessBarrel, Assembly-CSharp
+        m_MethodName: OnLeftClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

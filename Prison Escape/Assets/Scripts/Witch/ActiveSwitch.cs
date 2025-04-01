@@ -1,78 +1,67 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ActiveSwitch : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private GameObject cauldron;
     [SerializeField] private StartSwitchOn ToDialogue;
     [SerializeField] private Door door;
-    public static event Action OnSwitch;
 
-    private enum SwitchState
-    {
-        Nodata,     // 솥에 데이터가 들어오지 않았을 경우
-        Success,    // 솥에서 제약에 성공했을 경우
-        Failed,
-        Again// 솥에서 제약에 실패했을 경우
-    }
+    private Dictionary<SwitchState, Action> stateActions;
     
-    // 여기에서는 이제 cauldron에 들어 있는 값을 가지고 뭔갈 할 예정.
-    // 그러니깐 OnSwitch가 발동하면 여기에서 작동이 되는지 debug log 출력하기
-
-    private void OnEnable()
+    private void Awake()
     {
-        OnSwitch += SwitchEnter;
+        InitializeStateActions();
     }
 
-    private void OnDisable()
+    public void TriggerSwitch()
     {
-        OnSwitch -= SwitchEnter;
-    }
-
-    public void TriggeerSwitch()
-    {
-        OnSwitch?.Invoke();
+        SwitchEnter();
     }
 
     private void SwitchEnter()
     {
-        if (cauldron == null)
-        {
-            Debug.Log("Cauldron is null");
-            return;
-        }
-
-        if (audioSource.isPlaying)
-        {
-            audioSource.Stop();
-            StopAllCoroutines();
-            ToDialogue.StartDialogue((int)SwitchState.Again);
-            Debug.Log("Clicked again");
-            return;
-        }
+        var resultState = audioSource.isPlaying ? SwitchState.Again
+            : onSwitch?.Invoke() ?? SwitchState.Nodata;
         
-        ActiveCauldron cauldronAction = cauldron.GetComponent<ActiveCauldron>();
-        if (cauldronAction != null)
+        if (stateActions.TryGetValue(resultState, out var action))
         {
-            if (!cauldronAction.isSelected)
-            {
-                ToDialogue.StartDialogue((int)SwitchState.Nodata);
-                cauldronAction.ResetCauldron();
-                Debug.Log("Not selected");
-            }
-            else if (cauldronAction.CaculateResult())
-            {
-                ToDialogue.StartDialogue((int)SwitchState.Success);
-                door.Open();
-                Debug.Log("Success");
-            }
-            else
-            {
-                ToDialogue.StartDialogue((int)SwitchState.Failed);
-                cauldronAction.ResetCauldron();
-                Debug.Log("Failed");
-            }
+            action?.Invoke();
+            ToDialogue.StartDialogue((int)resultState);
         }
     }
+
+    private void InitializeStateActions()
+    {
+        stateActions = new Dictionary<SwitchState, Action>()
+        {
+            { SwitchState.Nodata, FailAction },
+            { SwitchState.Success, SuccessAction },
+            { SwitchState.Failed, FailAction },
+            { SwitchState.Again, AgainAction }
+        };
+    }
+    
+    private void FailAction()
+    {
+        Reset?.Invoke();
+    }
+   
+    private void SuccessAction()
+    {
+        door.Open();
+    }
+
+    private void AgainAction()
+    {
+        audioSource.Stop();
+        Debug.Log("Again");
+    }
+    
+    #region Delegates
+        public static Func<SwitchState> onSwitch;
+        public static event Action Reset;
+        
+    #endregion
 }
