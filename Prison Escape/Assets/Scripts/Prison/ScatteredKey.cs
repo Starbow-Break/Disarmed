@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class ScatteredKey : MonoBehaviour, IItemInteractable
 {
@@ -13,11 +14,13 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
     [SerializeField] private float fadeDuration;
     [SerializeField] private PlayerInput playerInput;
     
+    private VisualEffect effect;
     private AudioSource audioSource;
     private ScatteredKeyDialogue dialogue;
 
     void Awake()
     {
+        effect = GetComponentInChildren<VisualEffect>();
         audioSource = GetComponent<AudioSource>();
         dialogue = GetComponent<ScatteredKeyDialogue>();
     }
@@ -40,6 +43,7 @@ public class ScatteredKey : MonoBehaviour, IItemInteractable
         // 상호작용하지 못하게 PlayerInput과 콜리전 비활성화
         playerInput.enabled = false;
         GetComponent<Collider>().enabled = false;
+        effect.Stop();
         
         // 페이드 아웃
         yield return fadePanel.FadeIn(fadeDuration);
