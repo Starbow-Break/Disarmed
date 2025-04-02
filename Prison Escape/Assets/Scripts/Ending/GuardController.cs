@@ -13,11 +13,13 @@ public class GuardController : MonoBehaviour
     public event Action OnFinish; // 이동 종료시 발생할 이벤트
     
     private Animator guardAnim; // 경비병의 애니메이터
+    private AudioSource guardAudio; // 경비원의 사운드
     private int pointIndex; // 경비병이 지나간 지점 중 가장 나중에 지난 지점의 인덱스 번호
     
     private void Start()
     {
         guardAnim = guard.GetComponent<Animator>();
+        guardAudio = guard.GetComponent<AudioSource>();
         Stop();
     }
 
@@ -32,6 +34,7 @@ public class GuardController : MonoBehaviour
         {
             isFinish = true;
             guardAnim.SetTrigger("Finish");
+            guardAudio.Stop();
             OnFinish?.Invoke();
             return;
         }
@@ -69,6 +72,7 @@ public class GuardController : MonoBehaviour
     public void Play()
     {
         guard.SetActive(true);
+        guardAudio.Play();
         isPlaying = true;
     }
     
@@ -78,6 +82,7 @@ public class GuardController : MonoBehaviour
         guard.transform.position = routePoints[0].position;
         guard.transform.rotation = routePoints[0].rotation;
         guard.SetActive(false);
+        guardAudio.Stop();
         isPlaying = false;
         isFinish = false;
         pointIndex = 0;
