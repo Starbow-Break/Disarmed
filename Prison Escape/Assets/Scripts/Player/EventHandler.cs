@@ -106,6 +106,7 @@ public class EventHandler : MonoBehaviour
                     {
                         playerPickup.DestroyinHandItem();
                     }
+                    target.GetComponent<Highlight>()?.SetHighlightImmediately(false);
                     playerPickup.CopyItem(target);
                     usable = playerPickup.inHandItem.GetComponent<IUsable>();
                     Debug.Log(usable);

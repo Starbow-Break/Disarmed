@@ -28,4 +28,12 @@ public class Highlight : MonoBehaviour
         isEnabled = value;
         dirtyFlag = true;
     }
+    
+    // 하이라이트에 대한 설정을 바로 적용
+    public void SetHighlightImmediately(bool value)
+    {
+        isEnabled = value;
+        outline.enabled = isEnabled;
+        dirtyFlag = false;
+    }
 }

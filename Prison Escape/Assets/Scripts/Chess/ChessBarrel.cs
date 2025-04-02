@@ -75,8 +75,10 @@ public class ChessBarrel: MonoBehaviour, IFocusable
 
     private void LeftClickAction()
     {
-        // 게임이 일시정지된 상태이거나 상호작용하는 액터가 없다면 로직 중지
-        if (GamePause.isPaused || interactingActor == null)
+        // 게임이 일시정지된 상태이거나
+        // 상호작용하는 액터가 없거나
+        // 이미 잠금이 해제된 상태라면 클릭 동작을 실행하지 않는다.
+        if (GamePause.isPaused || interactingActor == null || !isLock)
         {
             return;
         }
