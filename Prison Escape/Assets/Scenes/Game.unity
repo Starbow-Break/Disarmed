@@ -5944,8 +5944,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331040738}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.30826166, z: 0, w: 0.95130163}
-  m_LocalPosition: {x: -6.1897, y: 1.8100001, z: 0.90470016}
+  m_LocalRotation: {x: 0.69412506, y: -0.10129572, z: -0.25554806, w: 0.66530055}
+  m_LocalPosition: {x: -6.481, y: 0.244, z: 0.346}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15363,8 +15363,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5057163957042219044, guid: 62e106504046c664fb38bb6145b356df, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5305789499435641175, guid: 62e106504046c664fb38bb6145b356df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664125015777675886, guid: 62e106504046c664fb38bb6145b356df, type: 3}
+      propertyPath: standup
+      value: 
+      objectReference: {fileID: 1758016619}
     - target: {fileID: 5664125015777675886, guid: 62e106504046c664fb38bb6145b356df, type: 3}
       propertyPath: fadePanel
       value: 

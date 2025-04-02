@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class GameLoader : MonoBehaviour
 {
+    [SerializeField] private CinemachineCamera standup;
     [SerializeField] private FadePanel fadePanel;
     [SerializeField] private float fadeDuration;
+    private static bool _firstTime = true;
     
     private IEnumerator Start()
     {
-        PlayerLoading.PlayerSetStop();
-        yield return StartCoroutine(StartFadeOut());
-        yield return new WaitForSeconds(0.5f);
+        if (!_firstTime)
+        {
+            standup.Priority = 0;
+            PlayerLoading.LoadDelay();
+        }
         
-        CameraSwitcher.instance.SwitchCamera(
-            cameraName: "AfterStand Camera", 
-            afterSwitch: () => SwitchToPlayer());
-        
+        else
+        {
+            _firstTime = false;
+            PlayerLoading.PlayerSetStop();
+            yield return StartCoroutine(StartFadeOut());
+            yield return new WaitForSeconds(0.5f);
+
+            CameraSwitcher.instance.SwitchCamera(
+                cameraName: "AfterStand Camera",
+                afterSwitch: () => SwitchToPlayer());
+        }
     }
     
     private void SwitchToPlayer()
     {
         CameraSwitcher.instance.SwitchCamera(
             cameraName: "Player Camera", 
-            afterSwitch: () => PlayerLoading.PlayerSetStart());
+            afterSwitch: () => GameStart());
     }
     
     private IEnumerator StartFadeOut()
@@ -31,4 +42,8 @@ public class GameLoader : MonoBehaviour
         yield return fadePanel.FadeOut(fadeDuration);
     }
 
+    private void GameStart()
+    {
+        PlayerLoading.PlayerSetStart();
+    }
 }

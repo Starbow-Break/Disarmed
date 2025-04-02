@@ -974,7 +974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 11
+    m_Value: 5
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -2909,6 +2909,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadePanel: {fileID: 981051594}
   fadeDuration: 1.8
+  startCamera: {fileID: 647682582}
+  eyeCamera: {fileID: 305527676}
 --- !u!1001 &1830787089
 PrefabInstance:
   m_ObjectHideFlags: 0
