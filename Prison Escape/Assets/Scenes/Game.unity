@@ -27904,9 +27904,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175743563183761895, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758432047888744004, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287379172075353886, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535497280353324088, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5091353364594066548, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5949844950011003766, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5953752441622350581, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
       propertyPath: m_Name
       value: Shelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074573512938387548, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639542995352072495, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8816652669068672843, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27947,6 +27979,10 @@ PrefabInstance:
     - target: {fileID: 8816652669068672843, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143125664245058661, guid: 880ad85ce63455141858a30dd0d34bf7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
