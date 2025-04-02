@@ -11,7 +11,7 @@ public class GameLoader : MonoBehaviour
     {
         PlayerLoading.PlayerSetStop();
         yield return StartCoroutine(StartFadeOut());
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         
         CameraSwitcher.instance.SwitchCamera(
             cameraName: "AfterStand Camera", 

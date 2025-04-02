@@ -32,6 +32,7 @@ Transform:
   - {fileID: 1524047156891532707}
   - {fileID: 4915574802279203405}
   - {fileID: 3736785609190452697}
+  - {fileID: 7085514991972686551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1431522248961606477
@@ -162,7 +163,7 @@ MonoBehaviour:
         z: 0.12848356
       Rotation:
         value:
-          x: 0.0132102445
+          x: 0.013210246
           y: 0.9252021
           z: 0.2103479
           w: -0.31556365
@@ -173,39 +174,19 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -0.15771078
+        z: -0.06518036
       TangentOut:
         x: 0
         y: 0
-        z: 0.10105301
+        z: 0.06518036
       Rotation:
         value:
-          x: -0.1812833
-          y: 0.9795623
-          z: 0.07917337
-          w: -0.036409408
-    - Position:
-        x: -0.47215843
-        y: 0.4850278
-        z: -1.1318213
-      TangentIn:
-        x: -0
-        y: -0
-        z: -0.0267604
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0.0267604
-      Rotation:
-        value:
-          x: -0.6739145
-          y: 0.712679
-          z: 0.029342877
-          w: 0.19252707
+          x: -0.19724083
+          y: 0.95618045
+          z: 0.024708161
+          w: -0.21495193
     m_MetaData:
     - Mode: 2
-      Tension: 0.5
-    - Mode: 0
       Tension: 0.5
     - Mode: 0
       Tension: 0.5
@@ -284,7 +265,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -408,7 +389,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -427,3 +408,34 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &7361591383485753906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7085514991972686551}
+  m_Layer: 0
+  m_Name: AfterStandPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7085514991972686551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361591383485753906}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.30826166, z: -0, w: 0.95130163}
+  m_LocalPosition: {x: -6.1897, y: 0.11, z: 0.90470016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6011046576465675586}
+  m_LocalEulerAnglesHint: {x: 0, y: -35.909, z: 0}
