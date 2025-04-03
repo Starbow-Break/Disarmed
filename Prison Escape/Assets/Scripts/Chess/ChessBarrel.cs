@@ -207,6 +207,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         {
             isSelected = false;
             targetPiece.GetComponent<Highlight>()?.SetHighlight(false);
+            targetPiece.transform.localPosition -= 0.01f * Vector3.up;
             audioSource.PlayOneShot(moveClip);
         }
     }
