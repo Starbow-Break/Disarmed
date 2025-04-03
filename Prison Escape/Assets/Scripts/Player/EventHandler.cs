@@ -1,5 +1,7 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class EventHandler : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class EventHandler : MonoBehaviour
     [SerializeField] private GameObject player; //이거는 플레이어 정보를 넘겨줄 필요가 있을 때에 필요해서
     [SerializeField] private PlayerPickup playerPickup; // Player Pick Up
     [SerializeField] private GameObject playerUI;   // 플레이어 상호작용 UI
+    [SerializeField] private AudioSource playerWalkSound;
+    [SerializeField] private TextMeshProUGUI guideText; // 포커스 상태 가이드 텍스트
+    [SerializeField] private Image guideImage;  // 포커스 상태 가이드 이미지
     [SerializeField, Min(1)] private float hitRange = 3.0f; // 상호작용 가능 범위
     [SerializeField] private LayerMask layerMask;   // 상호작용 가능한 레이어
     
@@ -77,7 +82,9 @@ public class EventHandler : MonoBehaviour
             // 상호작용하려는 오브젝트가 Focusable이면 포커싱한다.
             if (focusable != null)
             {
+                if(playerWalkSound.isPlaying) playerWalkSound.Stop();
                 playerUI.SetActive(false);
+                StartGuideUI();
                 focusable.Focus(player);
             }
             
@@ -125,9 +132,22 @@ public class EventHandler : MonoBehaviour
         if (focusable != null)
         {
             playerUI.SetActive(true);
+            EndGuideUI();
             focusable.UnFocus(player);
             focusable = null;
         }
+    }
+
+    private void StartGuideUI()
+    {
+        guideImage.gameObject.SetActive(true);
+        guideText.text = "해제";
+    }
+
+    private void EndGuideUI()
+    {
+        guideImage.gameObject.SetActive(false);
+        guideText.text = "";
     }
 
     private void CheckPlayer()
@@ -150,8 +170,8 @@ public class EventHandler : MonoBehaviour
         }
     }
 
-    public void SetNullUsable()
-    {
-        usable = null;
-    }
+    // public void SetNullUsable()
+    // {
+    //     usable = null;
+    // }
 }
