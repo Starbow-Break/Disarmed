@@ -83,7 +83,7 @@ public class CameraSwitcher : MonoBehaviour
         
         // 전환이 완료될 때가지 대기
         yield return new WaitUntil(() => cinemachineBrain.ActiveBlend != null);
-        yield return new WaitForSeconds(cinemachineBrain.ActiveBlend.Duration);
+        yield return new WaitForSeconds(cinemachineBrain.ActiveBlend == null ? 0f : cinemachineBrain.ActiveBlend.Duration);
         
         // 전환 이후 작동할 로직 시행
         if (afterSwitch != null)

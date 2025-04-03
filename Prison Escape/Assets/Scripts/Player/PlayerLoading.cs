@@ -10,6 +10,7 @@ public class PlayerLoading : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private CameraMove cameraMove;
+    [SerializeField] private PlayerInput playerInput;
 
     private void Awake()
     {
@@ -27,13 +28,31 @@ public class PlayerLoading : MonoBehaviour
         Instance.characterController.enabled = false;
         Instance.playerMove.enabled = false;
         Instance.cameraMove.enabled = false;
+        SetEnableInput(false);
+        // 클릭 조차 막아버리기
     }
+
+    public static void SetEnableInput(bool value)
+    {
+        if (value)
+        {
+            Instance.playerInput.actions["Interact"].Enable();
+            Instance.playerInput.actions["Drop"].Enable();
+        }
+        else
+        {
+            Instance.playerInput.actions["Interact"].Disable();
+            Instance.playerInput.actions["Drop"].Disable();
+        }
+    }
+    //클릭만 활성화하기 메서드
     
     public static void PlayerSetStart()
     {
         Instance.characterController.enabled = true;
         Instance.playerMove.enabled = true;
         Instance.cameraMove.enabled = true;
+        SetEnableInput(true);
     }
 
     private IEnumerator LoadCoroutine()

@@ -178,7 +178,9 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     {
         CameraSwitcher.instance.SwitchCamera(
             cameraName: "Interaction Camera", 
-            beforeSwitch: () => PlayerLoading.PlayerSetStop());
+            beforeSwitch: () => PlayerLoading.PlayerSetStop(),
+            afterSwitch: () => PlayerLoading.SetEnableInput(true));
+            //afterSwitch // 마우스 클릭만 활성화 하는 매서드
         
         CursorLocker.instance.UnlockCursor();
         interactingActor = actor;
@@ -191,6 +193,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         isSelected = false;
         CameraSwitcher.instance.SwitchCamera(
             cameraName: "Player Camera",
+            beforeSwitch: () => PlayerLoading.SetEnableInput(false),
             afterSwitch: () => PlayerLoading.PlayerSetStart());
         
         CursorLocker.instance.LockCursor();

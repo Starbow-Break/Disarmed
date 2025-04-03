@@ -7,7 +7,8 @@ public class TableCamera : MonoBehaviour, IFocusable
     {
         CameraSwitcher.instance.SwitchCamera(
             cameraName: "Camera_Table", 
-            beforeSwitch: () => PlayerLoading.PlayerSetStop());
+            beforeSwitch: () => PlayerLoading.PlayerSetStop(),
+            afterSwitch: () => PlayerLoading.SetEnableInput(true));
         
         CursorLocker.instance.UnlockCursor();
     }
@@ -16,6 +17,7 @@ public class TableCamera : MonoBehaviour, IFocusable
     {
         CameraSwitcher.instance.SwitchCamera(
             cameraName: "Player Camera",
+            beforeSwitch: () => PlayerLoading.SetEnableInput(false),
             afterSwitch: () => PlayerLoading.PlayerSetStart());
         
         CursorLocker.instance.LockCursor();
