@@ -9,10 +9,13 @@ public class Door : MonoBehaviour, IItemInteractable
     private Animator animator;
     private AudioSource audioSource;
 
+    public bool isOpen { get; private set; }
+
     void Awake()
     {
         animator = GetComponentInParent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        isOpen = false;
     }
     
     public void InteractUseItem(GameObject actor, GameObject useItem)
@@ -32,6 +35,12 @@ public class Door : MonoBehaviour, IItemInteractable
     // 문 열기
     public void Open()
     {
+        if (isOpen)
+        {
+            return;
+        }
+        
+        isOpen = true;
         audioSource?.PlayOneShot(openClip);
         animator?.SetTrigger("Open");
 
@@ -45,4 +54,23 @@ public class Door : MonoBehaviour, IItemInteractable
     {
         audioSource?.PlayOneShot(failClip);
     }
+    
+    #region PREVIEW
+    // 문 닫기 (시연 용)
+    public void Close()
+    {
+        if (!isOpen)
+        {
+            return;
+        }
+        
+        isOpen = false;
+        // audioSource?.PlayOneShot(openClip);
+        animator?.SetTrigger("Close");
+
+        // 상호작용 불가능하게 기본 레이어로 변경
+        LayerMask itemInteractableMask = 1 << LayerMask.GetMask("ItemInteractable");
+        gameObject.layer = itemInteractableMask;
+    }
+    #endregion
 }
