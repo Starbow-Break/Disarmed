@@ -56,7 +56,7 @@ public class UIHandler : MonoBehaviour
             isTriggered ? 1.0f : 0.0f
         );
         
-        aimUI.SetAimPoint(isTriggered, hit.collider?.GetComponent<IFocusable>() != null);
+        aimUI.SetAimPoint(isTriggered);
     }
 
     public void ChangeDialogue(string dialogue)

@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class AimUI : MonoBehaviour
 {
-    [SerializeField, Min(1)] float unfocusSizeMultiplier = 2.0f;
     [SerializeField, Min(1)] float focusSizeMultiplier = 6.0f;
     [SerializeField] private Sprite interactSprite;
     [SerializeField] private Sprite unfocusableSprite;
@@ -19,7 +18,7 @@ public class AimUI : MonoBehaviour
         aimOriginSize = aimRect.sizeDelta;
     }
 
-    public void SetAimPoint(bool detect, bool focusableDetect)
+    public void SetAimPoint(bool detect)
     {
         if (detect)
         {
