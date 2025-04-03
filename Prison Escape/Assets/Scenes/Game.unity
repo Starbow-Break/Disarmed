@@ -17615,6 +17615,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1789403720}
+    - target: {fileID: 8622501305862040285, guid: 11cbe759adaac3f46ab1e7ba8471042f, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 780181578}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
