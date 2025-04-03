@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2925577525895015286}
   - component: {fileID: 7362263515396214696}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera_Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1811898927023304727}
   - component: {fileID: 4717425462395426446}
   - component: {fileID: 8980399316002499602}
+  - component: {fileID: 1435397720257629492}
   m_Layer: 0
   m_Name: CandleLight
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1435397720257629492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2411602720341219125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe225ef2f23bfd6479fa9dbd01595915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: "\uC790\uC138\uD788 \uBCF4\uAE30"
 --- !u!1 &4033722955694041428
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +236,7 @@ GameObject:
   - component: {fileID: 448577144831972617}
   - component: {fileID: 3415006415927077426}
   - component: {fileID: 7349086939399469771}
+  - component: {fileID: 1817386176192832599}
   m_Layer: 7
   m_Name: Book_Open (1)
   m_TagString: Untagged
@@ -332,6 +347,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542cff4d3f3e927439324bb03c03d581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1817386176192832599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033722955694041428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe225ef2f23bfd6479fa9dbd01595915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: "\uC790\uC138\uD788 \uBCF4\uAE30"
 --- !u!1 &4285719473220713739
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8609709195806063703}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +448,7 @@ GameObject:
   - component: {fileID: 4303457634244566936}
   - component: {fileID: 4941137950671925823}
   - component: {fileID: 926607337792462250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: book_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

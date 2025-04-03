@@ -9,7 +9,10 @@ public class GameLoader : MonoBehaviour
     [SerializeField] private DialogueData startDialogue;
     [SerializeField] private CinemachineCamera standup;
     [SerializeField] private Canvas startCanvas;
-    [SerializeField] private Image controlGuide;
+    [SerializeField] private Image guideImage;
+    [SerializeField] private Sprite guideSprite;
+    [SerializeField] private Sprite defaultSprite;
+    [SerializeField] private TextMeshProUGUI guideText;
     [SerializeField] private TextMeshProUGUI startMessage;
     [SerializeField] private FadePanel fadePanel;
     [SerializeField] private float fadeDuration;
@@ -20,6 +23,8 @@ public class GameLoader : MonoBehaviour
     {
         if (!_firstTime)
         {
+            guideImage.sprite = defaultSprite;
+            guideImage.gameObject.SetActive(false);
             startCanvas.enabled = false;
             standup.Priority = 0;
             PlayerLoading.LoadDelay();
@@ -29,7 +34,8 @@ public class GameLoader : MonoBehaviour
         {
             _firstTime = false;
             startCanvas.enabled = true;
-            controlGuide.gameObject.SetActive(false);
+            guideImage.sprite = guideSprite;
+            guideImage.gameObject.SetActive(false);
             
             PlayerLoading.PlayerSetStop();
             startMessage.text = startDialogue.dialogues[_startCounter++];
@@ -65,10 +71,13 @@ public class GameLoader : MonoBehaviour
 
     private IEnumerator AfterStandUp()
     {
-        controlGuide.gameObject.SetActive(true);
+        guideImage.gameObject.SetActive(true);
+        guideText.text = "이동";
         startMessage.text = "";
         yield return new WaitForSeconds(3f);
         
-        controlGuide.gameObject.SetActive(false);
+        guideImage.sprite = defaultSprite;
+        guideImage.gameObject.SetActive(false);
+        guideText.text = "";
     }
 }

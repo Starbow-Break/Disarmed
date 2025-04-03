@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class StartWitch : BaseDialogue
 {
+    [SerializeField] private MeshCollider switchCollider;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private PlayWitchAudio WitchAudioClips;
     public void StartDialogue()
@@ -13,8 +14,9 @@ public class StartWitch : BaseDialogue
             return;
         }
         
+        switchCollider.enabled = false;
         StartCoroutine(WitchCoroutine());
-        }
+    }
 
     private IEnumerator WitchCoroutine()
     {
@@ -49,6 +51,7 @@ public class StartWitch : BaseDialogue
                 }
             }
         }
+        switchCollider.enabled = true;
         uiHandler.ChangeDialogue("");
     }
 }
