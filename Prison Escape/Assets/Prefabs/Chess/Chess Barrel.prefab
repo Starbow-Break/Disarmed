@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1999229517694180309}
   - component: {fileID: 3957436494895789125}
   - component: {fileID: 4448304121647486166}
+  - component: {fileID: 8489161825415741498}
   m_Layer: 7
   m_Name: Chess Barrel
   m_TagString: Untagged
@@ -125,7 +126,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -228,6 +229,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8489161825415741498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4113582668336583604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe225ef2f23bfd6479fa9dbd01595915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: "\uC790\uC138\uD788 \uBCF4\uAE30"
 --- !u!1 &7490783067343905103
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_Open
       objectReference: {fileID: 0}
+    - target: {fileID: 4369247199797357114, guid: 591bed4d8c69b824c81e7261d794d9f5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4369247199797523994, guid: 591bed4d8c69b824c81e7261d794d9f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -355,6 +373,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4369247199799293178, guid: 591bed4d8c69b824c81e7261d794d9f5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369247199799293178, guid: 591bed4d8c69b824c81e7261d794d9f5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 57c5c45402f367749a31d5f99048f829, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -373,6 +399,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7579300570781690913}
     m_Modifications:
+    - target: {fileID: 2208996600242340466, guid: 19f4c5e72cc98a64cbff4dc4072d3dfe, type: 3}
+      propertyPath: outline
+      value: 
+      objectReference: {fileID: 537374958938810332}
     - target: {fileID: 3039255809941886554, guid: 19f4c5e72cc98a64cbff4dc4072d3dfe, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -429,16 +459,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Selectable Bishop
       objectReference: {fileID: 0}
+    - target: {fileID: 6502235631196388099, guid: 19f4c5e72cc98a64cbff4dc4072d3dfe, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6502235631196388099, guid: 19f4c5e72cc98a64cbff4dc4072d3dfe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 537374958938810332}
   m_SourcePrefab: {fileID: 100100000, guid: 19f4c5e72cc98a64cbff4dc4072d3dfe, type: 3}
 --- !u!1 &720700542535583386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6502235631196388099, guid: 19f4c5e72cc98a64cbff4dc4072d3dfe, type: 3}
   m_PrefabInstance: {fileID: 5781748393916956057}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &537374958938810332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720700542535583386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0.001329422, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &8795950663188753347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3039255809941886554, guid: 19f4c5e72cc98a64cbff4dc4072d3dfe, type: 3}
@@ -452,6 +507,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3905588100072276537}
     m_Modifications:
+    - target: {fileID: 3814730381610453886, guid: b530e4f38cf3bb6ac9d09407190a13c0, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c4309d4054978f93fb08657b9b52c8db, type: 2}
     - target: {fileID: 3856626339953374218, guid: b530e4f38cf3bb6ac9d09407190a13c0, type: 3}
       propertyPath: m_Name
       value: Chess_Board
