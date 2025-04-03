@@ -57,11 +57,48 @@ public class ChessBarrel: MonoBehaviour, IFocusable
     private void Update()
     {
         // 이미 잠금 해제됐다면 기물의 하이라이트만 꺼주고 종료한다.
-        if (!isLock && needUnlockAction)
+        if (!isLock)
         {
-            needUnlockAction = false;
-            isSelected = false;
-            targetPiece.GetComponent<Highlight>()?.SetHighlight(isSelected);
+            if (needUnlockAction)
+            {
+                needUnlockAction = false;
+                isSelected = false;
+                targetPiece.GetComponent<Highlight>()?.SetHighlight(isSelected);
+            }
+            
+            return;
+        }
+        
+        // 기물이 선택된 상태라면 실행 종료
+        if (isSelected)
+        {
+            return;
+        }
+        
+        // 하이라이트를 일단 꺼주고 시작
+        targetPiece?.GetComponent<Highlight>()?.SetHighlight(false);
+        
+        // 스크린에서 마우스 클릭 위치를 통과하는 광선 생성
+        Vector3 mousePosition = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            if (!isPut)
+            {
+                // 선택한것이 기물이라면 선택 상태로 만든다.
+                if (hit.collider.gameObject == targetPiece)
+                {
+                    targetPiece?.GetComponent<Highlight>()?.SetHighlight(true);
+                }
+            }
+            else
+            {
+                if (targetCurrentPosition == chessBoard.GetSquarePositionFromCollider(hit.collider))
+                {
+                    targetPiece?.GetComponent<Highlight>()?.SetHighlight(true);
+                }
+            }
         }
     }
 
@@ -159,6 +196,7 @@ public class ChessBarrel: MonoBehaviour, IFocusable
         {
             isSelected = true;
             targetPiece.GetComponent<Highlight>()?.SetHighlight(true);
+            targetPiece.transform.localPosition += 0.01f * Vector3.up;
             audioSource.PlayOneShot(captureClip);
         }
     }
