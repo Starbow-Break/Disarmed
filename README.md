@@ -3,7 +3,7 @@
 ## **프로젝트 개요**
 Disarmed는 모든 무기와 장비를 빼앗긴 채 감옥에 갇히게 된 주인공이 감옥을 탈출하는 3D 방탈출 게임입니다. 주인공은 각 방의 퍼즐을 해결하여 감옥을 탈출하면서 자신이 갇힌 이유를 알기 위한 여정을 떠납니다.
 
-### :movie_camera:[트레일러](https://youtu.be/ARmvEGlMU6M) :movie_camera:[시연 영상](https://youtu.be/pFVIXAYbMi8)
+#### :movie_camera:[트레일러](https://youtu.be/ARmvEGlMU6M) :movie_camera:[시연 영상](https://youtu.be/pFVIXAYbMi8)
 
 
 ## 주요 기능
