@@ -62,12 +62,16 @@ Disarmed는 모든 무기와 장비를 빼앗긴 채 감옥에 갇히게 된 주
 - 잘못된 발판을 밟으면 바닥에서 창이 튀어나오고 체크 포인트로 이동하게 됩니다. 창은 튀어나온 상태를 유지합니다.
 - 주위의 힌트를 통해 올바른 발판을 알 수 있도록 디자인 했습니다.
 
+  <img src="https://github.com/user-attachments/assets/b8d1dad0-95bf-4b5e-8db2-28579d068b6a" width="60%" height="60%"/>
+
 ## 엔딩
 
 - 엔딩 지점에 오면 두갈래 길이 보입니다.
     - 왼쪽으로 가면 함정에 걸리게 되며 경비에게 잡혀 다시 감옥으로 가게됩니다.
     - 오른쪽으로 가면 To Be Continued..라는 메세지와 함께 다음 스토리를 암시합니다.
     - 왼쪽 길에는 함정이 있다는 것을 플레이어가 조금 눈치챌 수 있도록 맵 디자인을 했습니다.
+      
+  <img src="https://github.com/user-attachments/assets/2e50bfba-dfc7-40c9-bda5-b890bc5b588b" width="60%" height="60%"/>
 
 ---
 
