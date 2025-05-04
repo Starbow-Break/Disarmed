@@ -12,7 +12,7 @@ Disarmed는 모든 무기와 장비를 빼앗긴 채 감옥에 갇히게 된 주
 
 - Game Start 버튼을 누르면 감옥으로 빨려들어가는 연출과 이후 플레이어가 일어나면서 대사가 재생됩니다.
 - 이후 이동 키를 우측 하단에 안내하면서 플레이어를 조작할 수 있게됩니다.
-- 
+
   <img src="https://github.com/user-attachments/assets/72bac50b-35ff-4b16-9f35-f41f86f6180b" width="70%" height="70%"/>
 
 ### 감옥
