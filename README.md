@@ -86,7 +86,7 @@ Unity, C#
 
 
 ## 팀원 소개
-|김범수|최석환|
+|김범수 <a href="https://github.com/Starbow-Break"><img src="https://github.com/user-attachments/assets/5cf4751a-cd8d-4328-b893-d8f76379e049" width="16" height="16"/></a>|최석환 <a href="https://github.com/Seokhwan98"><img src="https://github.com/user-attachments/assets/5cf4751a-cd8d-4328-b893-d8f76379e049" width="16" height="16"/></a>|
 |:---:|:---:|
 |<img src="https://github.com/user-attachments/assets/2fdb6c87-57a7-4d4d-9552-b87ca5df228c" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/f784a675-d1d9-46d3-93f4-06315aa65c7e" width="200" height="200"/>|
 |개발|기획/개발|
