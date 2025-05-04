@@ -49,6 +49,9 @@ Disarmed는 모든 무기와 장비를 빼앗긴 채 감옥에 갇히게 된 주
 ### 마녀방
 
 - 마녀방에 입장하면 마녀와의 대화가 진행됩니다. 마녀와의 대화를 통해 마녀방의 탈출 조건을 알 수 있습니다.
+  
+  <img src="https://github.com/user-attachments/assets/07060cd7-af64-4933-9385-45f4cb6f5ad8" width="70%" height="70%"/>
+
 - 재료를 집은 다음 솥에 넣을 수 있습니다.
   
   <img src="https://github.com/user-attachments/assets/18a4bccd-b409-43e0-b4a1-7e3905744b0c" width="70%" height="70%"/>
