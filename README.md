@@ -5,7 +5,6 @@ Disarmed는 모든 무기와 장비를 빼앗긴 채 감옥에 갇히게 된 주
 
 ### :movie_camera:[트레일러](https://youtu.be/ARmvEGlMU6M) :movie_camera:[시연 영상](https://youtu.be/pFVIXAYbMi8)
 
----
 
 ## 주요 기능
 
@@ -70,13 +69,11 @@ Disarmed는 모든 무기와 장비를 빼앗긴 채 감옥에 갇히게 된 주
       
   <img src="https://github.com/user-attachments/assets/2e50bfba-dfc7-40c9-bda5-b890bc5b588b" width="60%" height="60%"/>
 
----
 
 ## 기술 스택
 
 Unity, C#
 
----
 
 ## 팀원 소개
 |김범수|최석환|
